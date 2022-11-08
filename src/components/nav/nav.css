@@ -1,0 +1,14 @@
+.menuItem {
+  padding: 0.56rem 1rem;
+  border-radius: 27px;
+  transition: all 1s ease-in-out;
+  color: #fff;
+  /* background: url('/gwPSoYUHAKmdyVywgLpKKA4BjRr.jpg'); */
+}
+.menuItem:hover {
+  border-radius: 27px;
+  padding: 0.56rem 1rem;
+  color: #000;
+  background-color: #fff;
+  cursor: pointer;
+}

@@ -1,0 +1,26 @@
+.sorting--button {
+  border: none;
+  font-size: 17px;
+  font-weight: 600;
+  background: transparent;
+  color: #fff;
+}
+.sorting--button:hover {
+  /* color: #000; */
+}
+.button--box {
+  background: transparent;
+  padding: 0.7em 1em;
+  border-radius: 8px;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  border: 2px solid #fff;
+  transition: all 1s ease-in-out;
+  color: #fff;
+}
+.button--box:hover {
+  /* background-color: #fff;
+  color: #000; */
+  cursor: pointer;
+}

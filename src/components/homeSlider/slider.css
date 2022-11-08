@@ -1,0 +1,24 @@
+.button--imdb {
+  background-color: #fdcc0d;
+  border: none;
+  padding: 3px 5px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 3px;
+}
+.ratingTen {
+  font-size: 15px;
+  font-weight: 600;
+  padding: 0.3em 0;
+}
+.slider-text {
+  font-size: 18px;
+  font-weight: 400;
+  padding-top: 1.8rem;
+}
+.slider--component {
+  /* background: url('https://i.pinimg.com/564x/5c/e0/35/5ce0356d1f9fcc016e9a4358d7d9f3c0.jpg'); */
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 78vh;
+}
