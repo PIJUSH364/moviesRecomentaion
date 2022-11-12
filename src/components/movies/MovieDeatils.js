@@ -9,6 +9,7 @@ import ButtIcon from './ButtIcon';
 import { Store } from '../store/Store';
 import MoviesItem from '../category/MoviesItem';
 import styled from '@emotion/styled';
+import MovieSummay from './MovieSummay';
 // import './moviesDetails.css';
 const MovieButton = styled(Button)({
   backgroundColor: 'rgba(255,255,255,0.5)',
@@ -18,6 +19,7 @@ const MovieButton = styled(Button)({
   transition: 'all 1s ease-in-out',
   fontWeight: '600',
   fontFamily: 'monospace',
+  maxWidth: '200px',
   '&:hover': {
     background: '#fff',
     color: '#000',
@@ -32,23 +34,46 @@ function MovieDeatils() {
   console.log('moviescc deatils--', movieInfo);
   return (
     <Stack
-      pt={5}
-      style={{
+      sx={{
         background: `url(
-        'https://images.unsplash.com/photo-1554248951-825cf7479258?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60'
-      )`,
+          'https://images.unsplash.com/photo-1554248951-825cf7479258?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60'
+        )`,
         backgroundRepeat: ' no-repeat',
         backgroundPosition: 'auto',
         backgroundSize: 'cover',
         color: '#fff',
+        width: '100%',
+        padding: {
+          xs: '1rem',
+          sm: '1rem',
+          md: '1rem',
+        },
       }}
     >
       <Stack
         sx={{
-          padding: '4rem 3rem ',
+          padding: {
+            xs: '0',
+            sm: '0',
+            md: '4rem 3rem',
+            lg: '4rem 3rem',
+            xl: '4rem 3rem',
+          },
         }}
       >
-        <Stack className="movieDeatils--container" direction="row">
+        <Stack
+          className="movieDeatils--container"
+          direction="row"
+          sx={{
+            flexDirection: {
+              xs: 'column',
+              sm: 'column',
+              md: 'row',
+              lg: 'row',
+              xl: 'row',
+            },
+          }}
+        >
           <Box className="movie--img" p={2} pl={0} pt={0}>
             <img
               className="actor--img"
@@ -64,50 +89,50 @@ function MovieDeatils() {
               }}
             />
           </Box>
-          <Stack className="movie--summery" pl={3}>
-            <Typography variant="h3" mt={6}>
-              {movieInfo.original_name}
-            </Typography>
-            <div className="slider--rating">
-              <div className="slider--imdb--rating">
-                <span>
-                  <Box
-                    className="ratingTen"
-                    sx={{ display: 'flex', alignItems: 'center' }}
-                  >
-                    {`${10 / 2}/5`}
-                    &nbsp;
-                    <Rating
-                      name="read-only"
-                      size="medium"
-                      value={`${10 / 2}`}
-                      readOnly
-                    />
-                    &nbsp; &#x2022; {`${movieInfo.vote_average}/10`} &nbsp;
-                    <button className="button--imdb">IMDb </button>
-                  </Box>
-                </span>
-              </div>
-              <div className="slider--content--deatils">
-                <p className="ratingTen">
-                  {`${movieInfo.release_date.split('-', 1)}`}
-                  &nbsp;&#x2022; &nbsp;+10&nbsp;&#x2022;&nbsp;1hr
-                  38min&nbsp;&#x2022;&nbsp;&nbsp;Fantasy&#x2022;&nbsp;Horror
-                </p>
-              </div>
-              <div style={{ minHeight: '6rem' }} pt={10}>
-                <Typography variant="body1" pt={2}>
-                  {movieInfo.overview}
-                </Typography>
-              </div>
-            </div>
+          <Box>
+            <MovieSummay
+              movieName={movieInfo.original_name}
+              outOfFive={`${movieInfo.vote_average / 2}/5`}
+              outOfTen={`${movieInfo.vote_average}/10`}
+              movieSummery={movieInfo.overview}
+              year={`${movieInfo.release_date.split('-', 1)}`}
+              rating={movieInfo.vote_average / 2}
+            />{' '}
             <Stack
-              sx={{ justifyContent: 'space-between' }}
-              direction="row"
+              sx={{
+                flexDirection: {
+                  xs: 'row',
+                  sm: 'column',
+                  md: 'column',
+                  lg: 'row',
+                  xl: 'row',
+                },
+                paddingLeft: {
+                  xs: '0',
+                  sm: '0',
+                  md: '1rem',
+                  lg: '1rem',
+                  xl: '1rem',
+                },
+                justifyContent: 'space-between',
+                gap: '1rem',
+              }}
               pt={2}
               pb={2}
             >
-              <Stack className="button--left" direction="row" spacing={2}>
+              <Stack
+                className="button--left"
+                sx={{
+                  flexDirection: {
+                    xs: 'column',
+                    sm: 'row',
+                    md: 'row',
+                    lg: 'row',
+                    xl: 'row',
+                  },
+                  gap: '1rem',
+                }}
+              >
                 <MovieButton startIcon={<PlayArrowIcon />}>
                   Watch Trailer
                 </MovieButton>
@@ -118,18 +143,45 @@ function MovieDeatils() {
                   Rate Serie
                 </MovieButton>
               </Stack>
-              <Stack className="button--right" direction="row" spacing={1}>
-                <ButtIcon icon={QuestionAnswerIcon} />{' '}
+              <Stack
+                className="button--right"
+                spacing={1}
+                sx={{
+                  justifyContent: {
+                    xs: 'space-between',
+                    sm: 'space-between',
+                    md: 'space-between',
+                    lg: 'flex-end',
+                    xl: 'flex-end',
+                  },
+                  flexDirection: {
+                    xs: 'column',
+                    sm: 'row',
+                    md: 'row',
+                    lg: 'row',
+                    xl: 'row',
+                  },
+                  gap: '10px',
+                  alignItems: 'center',
+                  alignContent: 'center',
+                }}
+              >
+                <ButtIcon icon={QuestionAnswerIcon} />
                 <ButtIcon icon={StarBorderIcon} />
               </Stack>
             </Stack>
-          </Stack>
+          </Box>
         </Stack>
-        <Stack className="cast-crew" style={{ display: 'flex' }} pt={1} pb={2}>
+        <Stack
+          className="cast-crew"
+          style={{ display: 'flex', flexWrap: 'wrap' }}
+          pt={1}
+          pb={2}
+        >
           <Typography variant="h6" gutterBottom pb={1}>
             Full Cast & Crew
           </Typography>
-          <Stack direction="row" spacing={4}>
+          <Stack direction="row" flexWrap="wrap" gap={2}>
             <Cast />
             <Cast />
             <Cast />
@@ -138,13 +190,17 @@ function MovieDeatils() {
           </Stack>
         </Stack>
       </Stack>
-      <Box className="recomended--movesList" pl={10}>
+      <Box className="recomended--movesList">
         <Typography variant="h6" gutterBottom pb={2}>
           Releted movies
         </Typography>
-        <Box className="movies--list" style={{ display: 'flex', gap: '2em' }}>
+        <Stack
+          className="movies--list"
+          direction="row"
+          style={{ display: 'flex', flexWrap: 'wrap', gap: '2em' }}
+        >
           <MoviesItem /> <MoviesItem /> <MoviesItem /> <MoviesItem />
-        </Box>
+        </Stack>
       </Box>
     </Stack>
   );
