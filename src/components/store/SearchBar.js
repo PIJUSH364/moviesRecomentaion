@@ -5,6 +5,8 @@ import { Stack, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
 import './searchbar.css';
 import { Store } from './Store';
+
+
 function SearchBar({ placeholder, data }) {
   const { state, dispatch } = useContext(Store);
   const moviePreviwHandeler = (item) => {
@@ -37,26 +39,42 @@ function SearchBar({ placeholder, data }) {
   };
 
   return (
-    <Stack bgcolor="rgba(128, 128, 128, 0.57)" alignItems="center">
-      <Stack className="searchbar" direction="row">
-        <div className="searchInputs">
+    <Box width="100%">
+      <Stack
+        className="searchbar"
+        direction="row"
+        justifyContent="center"
+        alignItems="stretch"
+      >
+        <Box
+          className="searchInputs"
+          sx={{
+            backgroundColor: '#fff',
+          }}
+        >
           <input
             value={inputvalue}
             type="text"
             placeholder={placeholder}
             style={{
-              padding: '1em',
+              padding: '0.7rem',
               border: 'none',
               outline: 'none',
             }}
             onChange={handleFilter}
-          />
-        </div>
-        <div className="input--icon">{icon}</div>
+          />{' '}
+          <Box className="input--icon">{icon}</Box>
+        </Box>
       </Stack>
       {filterdata.length != 0 && (
-        <Box className="data--result">
-          {filterdata.slice(0, 1).map((e, key) => {
+        <Stack
+          className="data--result"
+          style={{
+            zIndex: '1000',
+            position: 'absolute',
+          }}
+        >
+          {filterdata.slice(0, 2).map((e, key) => {
             return (
               <Link
                 to="movies"
@@ -73,9 +91,9 @@ function SearchBar({ placeholder, data }) {
               </Link>
             );
           })}
-        </Box>
+        </Stack>
       )}
-    </Stack>
+    </Box>
   );
 }
 

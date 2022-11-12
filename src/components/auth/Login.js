@@ -1,8 +1,10 @@
 import { Box, Stack, Typography, TextField } from '@mui/material';
-import React from 'react';
+import React, { useContext } from 'react';
 import LoginIcon from '@mui/icons-material/Login';
 import { styled } from '@mui/material/styles';
 import FormButton from '../movies/FormButton';
+import { Link } from 'react-router-dom';
+import { Store } from '../store/Store';
 // import { withStyles } from 'material-ui/styles';
 // import withRoot from '../components/withRoot';
 
@@ -27,6 +29,9 @@ const CssTextField = styled(TextField)({
 });
 
 function login() {
+  const { state, dispatch } = useContext(Store);
+  const { auth } = state;
+  console.log('auth login', { auth });
   return (
     <Stack className="login--container" p={5}>
       <Box className="application--logo" mb={5}>
@@ -50,10 +55,17 @@ function login() {
           <CssTextField label="Password" id="custom-css-outlined-input" />
           <FormButton body="Sign in to Your Account !" icon={LoginIcon} />
         </Stack>
-      </Box>
-      <Typography variant="body1" textAlign="left" mt={3}>
-        Create An Account !
-      </Typography>
+      </Box>{' '}
+      <Link to="signup">
+        <Typography
+          variant="body1"
+          textAlign="left"
+          mt={3}
+          onClick={() => console.log('login')}
+        >
+          Create An Account !
+        </Typography>
+      </Link>
       <Typography variant="body2" textAlign="right" mt={3}>
         Privicy Policy!
       </Typography>

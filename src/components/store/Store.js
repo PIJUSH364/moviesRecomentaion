@@ -7,7 +7,8 @@ const initialState = {
   // movies: {
   //   movieItem: [],
   // },
-
+  auth: 'login',
+  // auth:Cookies.get('auth'),
   movies: Cookies.get('movies')
     ? JSON.parse(Cookies.get('movies'))
     : { movieItem: [] },
@@ -22,6 +23,14 @@ function reducer(state, action) {
       // cookies storage
       Cookies.set('movies', JSON.stringify({ ...state.movies }));
       return { ...state, movies: { ...state.movies } };
+    }
+    case 'Auth_CHECKING': {
+      const currentAuth = action.payload;
+      state.auth = currentAuth;
+
+      // cookies storage
+      Cookies.set('auth', JSON.stringify({ ...state.auth }));
+      return { ...state, auth: { ...state.auth } };
     }
 
     default:

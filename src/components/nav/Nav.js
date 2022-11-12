@@ -1,106 +1,106 @@
-import React, { useState, useContext } from 'react';
-import { IconButton, Typography, Stack, Box, Drawer } from '@mui/material';
-import TextField from '@mui/material/TextField';
-
+import { Stack, Box, Typography, Drawer, IconButton } from '@mui/material';
+import React, { useContext, useState } from 'react';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import Login from '../auth/Login';
-import './nav.css';
 import { Link } from 'react-router-dom';
-import SingUp from '../auth/SingUp';
-import ContactUs from '../auth/ContactUs';
-import PrivicyPolicy from '../auth/PrivicyPolicy';
-import { styled } from '@mui/material/styles';
-import SearchAutocomplete from '../store/SearchAutocomplete';
+import styled from '@emotion/styled';
 import { Store } from '../store/Store';
 import SearchBar from '../store/SearchBar';
 import data from '../store/data';
-const CssTextField = styled(TextField)({
-  '& label.Mui-focused': {
-    color: '#fff',
-  },
-  '& .MuiInput-underline:after': {
-    borderBottomColor: '#fff',
-  },
-  '& .MuiOutlinedInput-root': {
-    '& fieldset': {
-      borderColor: '#fff',
-    },
-    '&:hover fieldset': {
-      borderColor: '#fff',
-    },
-    '&.Mui-focused fieldset': {
-      borderColor: '#fff',
-    },
+import MenuIcon from '@mui/icons-material/Menu';
+import Login from '../auth/Login';
+import RenderAuth from '../auth/RenderAuth';
+const bgImg = {
+  background: `url(https://images.unsplash.com/photo-1537113399937-1cb9c5b273ac?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHN1bnNldCUyMGNvdXBsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60)`,
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover',
+  minHeight: '100vh',
+};
+const MenuItems = styled(Typography)({
+  color: 'rgba(255,255,255,0.8)',
+  fontFamily: 'monospace',
+  fontSize: '1.4rem',
+  fontFamily: 500,
+  padding: '5px 1.4rem',
+  transition: 'all 1.2s ease-in-out',
+  borderRadius: '30px',
+  '&:hover': {
+    background: '#fff',
+    color: '#000',
   },
 });
-const drawerLayout = [
-  {
-    id: '1',
-    component: `${(<Login />)}`,
+const MenuShown = styled(MenuIcon)({
+  color: 'rgba(255,255,255,0.8)',
+  transition: 'all 1.2s ease-in-out',
+  '&:hover': {
+    color: 'rgba(255,255,255,0.5)',
   },
-  {
-    id: '2',
-    component: `${(<SingUp />)}`,
-  },
-  {
-    id: '3',
-    component: `${(<ContactUs />)}`,
-  },
-  {
-    id: '3',
-    component: `${(<PrivicyPolicy />)}`,
-  },
-];
+});
 function Nav() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [componentvalue, setComponentvalue] = useState(1);
   const { state, dispatch } = useContext(Store);
   const { movies } = state;
-  console.log('moviesnav--', movies);
+  // console.log('moviesnav--', movies);
   return (
     <Stack
-      className="nav--container"
       direction="row"
       justifyContent="space-between"
-      alignItems="center"
+      pt={3}
+      sx={{
+        height: { xs: '13vh', sm: '13vh', md: '18vh', lg: '15vh', xl: '20vh' },
+      }}
     >
-      <Stack direction="row" alignItems="flex-start" maxHeight="100px">
-        <div className="app--logo">
+      <Box>
+        <Link to="/">
           <img
             style={{ width: '5rem' }}
             src="https://fh-sites.imgix.net/sites/1715/2018/09/07203547/San-Francisco-Movie-Tours-Logo.png?auto=compress%2Cformat&w=1024&h=1024&fit=max"
             alt="app--logo"
           />
-        </div>
-        <div className="nav--search" style={{ width: '13rem', margin: '20px' }}>
-          {/* <SearchAutocomplete /> */}
+        </Link>
+      </Box>
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: {
+            xs: 'auto',
+            sm: '1fr',
+            md: '1.4fr 2fr',
+            lg: '1.2fr 2fr',
+          },
+          alignItems: 'baseline',
+        }}
+      >
+        <Box>
           <SearchBar placeholder="Find movies..." data={data} />
-        </div>
-        <div className="nav--menuItems">
-          <ul
-            style={{
-              display: 'flex',
-              listStyleType: 'none',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              gap: '0.5em',
-              fontSize: '1.4em',
-              fontWeight: '400',
-            }}
-          >
-            <Link to="/">
-              <li className="menuItem">Home</li>
-            </Link>
-            <Link to="movies">
-              <li className="menuItem">Movies</li>
-            </Link>
-            <li className="menuItem">Shows</li>
-            <li className="menuItem">Live Tv</li>
-            <li className="menuItem">My list</li>
-          </ul>
-        </div>
-      </Stack>
-      <Stack className="nav--auth" pr="2em">
+        </Box>
+        <Stack
+          direction="row"
+          sx={{ display: { xs: 'none', sm: 'none', md: 'flex', lg: 'flex' } }}
+        >
+          <Link to="/">
+            <MenuItems>Home</MenuItems>
+          </Link>{' '}
+          <Link to="movies">
+            <MenuItems>Movies</MenuItems>
+          </Link>{' '}
+          <Link to="/">
+            <MenuItems>Home4</MenuItems>
+          </Link>{' '}
+          <Link to="/">
+            <MenuItems>Home4</MenuItems>
+          </Link>{' '}
+          <Link to="/">
+            <MenuItems>Home4</MenuItems>
+          </Link>
+        </Stack>
+      </Box>
+      <Box
+        mt={-1.4}
+        sx={{
+          paddingLeft: { xs: '1rem', sm: '1rem', md: '0', lg: '0' },
+          paddingRight: { xs: '1rem', sm: '1rem', md: '0', lg: '0' },
+        }}
+      >
         <IconButton
           size="large"
           edge="start"
@@ -108,7 +108,7 @@ function Nav() {
           aria-label="logo"
           onClick={() => setIsDrawerOpen(true)}
         >
-          <AccountCircleIcon fontSize="large" />
+          <MenuShown fontSize="large" />
         </IconButton>
 
         <Drawer
@@ -117,22 +117,19 @@ function Nav() {
           onClose={() => setIsDrawerOpen(false)}
         >
           <Box
-            width="32vw"
-            height="100vh"
+            // height="100vh"
             textAlign="center"
             role="presentation"
             sx={{
               backgroundColor: '#696969',
               color: '#FFF',
+              width: { xs: '80vw', sm: '60vw', md: '50vw', lg: '30vw' },
             }}
           >
-            <Login />
-            {/* <SingUp /> */}
-            {/* <ContactUs /> */}
-            {/* <PrivicyPolicy /> */}
+            <RenderAuth />
           </Box>
         </Drawer>
-      </Stack>
+      </Box>
     </Stack>
   );
 }

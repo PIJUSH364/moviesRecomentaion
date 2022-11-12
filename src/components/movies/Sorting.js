@@ -36,7 +36,7 @@ var yearDcending;
     return e.name;
   });
   name.sort((a, b) => (a > b ? 1 : b > a ? -1 : 0));
-  console.log(name);
+  // console.log(name);
 }
 
 function Sorting() {

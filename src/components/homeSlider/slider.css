@@ -18,7 +18,5 @@
 }
 .slider--component {
   /* background: url('https://i.pinimg.com/564x/5c/e0/35/5ce0356d1f9fcc016e9a4358d7d9f3c0.jpg'); */
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 78vh;
+  
 }

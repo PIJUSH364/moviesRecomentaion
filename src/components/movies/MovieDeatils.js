@@ -1,16 +1,28 @@
 import React, { useContext } from 'react';
 import Cast from '../cast/Cast';
-import { Typography, Stack, Box, Rating } from '@mui/material';
-import Button from './Button';
+import { Typography, Stack, Box, Rating, Button } from '@mui/material';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-
 import ButtIcon from './ButtIcon';
 import { Store } from '../store/Store';
 import MoviesItem from '../category/MoviesItem';
+import styled from '@emotion/styled';
 // import './moviesDetails.css';
+const MovieButton = styled(Button)({
+  backgroundColor: 'rgba(255,255,255,0.5)',
+  color: '#fff',
+  fontSize: '15px',
+  padding: '10px 18px',
+  transition: 'all 1s ease-in-out',
+  fontWeight: '600',
+  fontFamily: 'monospace',
+  '&:hover': {
+    background: '#fff',
+    color: '#000',
+  },
+});
 function MovieDeatils() {
   const { state, dispatch } = useContext(Store);
   const { movies } = state;
@@ -31,7 +43,11 @@ function MovieDeatils() {
         color: '#fff',
       }}
     >
-      <Stack p={10} pt={0} pb={4}>
+      <Stack
+        sx={{
+          padding: '4rem 3rem ',
+        }}
+      >
         <Stack className="movieDeatils--container" direction="row">
           <Box className="movie--img" p={2} pl={0} pt={0}>
             <img
@@ -50,8 +66,7 @@ function MovieDeatils() {
           </Box>
           <Stack className="movie--summery" pl={3}>
             <Typography variant="h3" mt={6}>
-              {/* {movieInfo.original_name} */}
-              shy
+              {movieInfo.original_name}
             </Typography>
             <div className="slider--rating">
               <div className="slider--imdb--rating">
@@ -93,9 +108,15 @@ function MovieDeatils() {
               pb={2}
             >
               <Stack className="button--left" direction="row" spacing={2}>
-                <Button body="Watch Trailer" icon={PlayArrowIcon} />
-                <Button body="Add To My List" icon={AddCircleIcon} />
-                <Button body="Rate Serie" icon={StarBorderIcon} />
+                <MovieButton startIcon={<PlayArrowIcon />}>
+                  Watch Trailer
+                </MovieButton>
+                <MovieButton startIcon={<AddCircleIcon />}>
+                  Add To My List
+                </MovieButton>
+                <MovieButton startIcon={<StarBorderIcon />}>
+                  Rate Serie
+                </MovieButton>
               </Stack>
               <Stack className="button--right" direction="row" spacing={1}>
                 <ButtIcon icon={QuestionAnswerIcon} />{' '}
