@@ -132,7 +132,12 @@ function Sorting() {
         mt={3}
       >
         {filtered.map((e, key) => {
-          return <MoviePoster key={key} data={e} />;
+          return (
+            <>
+             
+              <MoviePoster key={key} data={e} />
+            </>
+          );
         })}
       </Box>
       <Stack justifyContent="space-between" direction="row" p={2}>

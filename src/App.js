@@ -16,14 +16,12 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        {/* <Route path="/" element={<ActorDeatils />}> */}
         <Route index element={<SingUp />} />
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<SingUp />} />
+        <Route path="movies/moviedetails" element={<MovieDeatils />} />
       </Route>
-      {/* <Route path="/movies" element={<MovieDeatils />} /> */}
-      {/* <Route path="/" element={<MovieSummay />} /> */}
-      <Route path="/movies" element={<AllMovies />} />
+      <Route path="/movies" element={<AllMovies />}></Route>
       <Route path="*" element={<NotFound />} />
       <Route path="/moviedetails" element={<MovieDeatils />} />
     </Routes>

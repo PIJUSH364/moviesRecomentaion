@@ -76,8 +76,11 @@ function SearchBar({ placeholder, data }) {
         >
           {filterdata.slice(0, 2).map((e, key) => {
             return (
-              <Link to="mv" key={key} onClick={() => moviePreviwHandeler(e)}>
+              <Link to="moviedetails" key={key} onClick={() => moviePreviwHandeler(e)}>
                 <p
+                  style={{
+                    color: '#fff',
+                  }}
                   className="movie--name"
                   key={key}
                   onClick={() => moviePreviwHandeler(e)}

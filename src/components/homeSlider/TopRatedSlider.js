@@ -40,6 +40,7 @@ function TopRatedSlider() {
         rowGap: '2rem',
         columnGap: '3rem',
         marginTop: '2rem',
+        justifyItems: 'center',
       }}
     >
       {movieData.slice(0, 14).map((item, key) => {

@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import LoginIcon from '@mui/icons-material/Login';
 import { styled } from '@mui/material/styles';
 import FormButton from '../movies/FormButton';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { Store } from '../store/Store';
 // import { withStyles } from 'material-ui/styles';
 // import withRoot from '../components/withRoot';
@@ -27,7 +27,19 @@ const CssTextField = styled(TextField)({
     },
   },
 });
-
+const MenuItems = styled(Typography)({
+  color: 'rgba(255,255,255,0.8)',
+  fontFamily: 'monospace',
+  fontSize: '1.4rem',
+  fontFamily: 500,
+  padding: '5px 1.4rem',
+  transition: 'all 1.2s ease-in-out',
+  borderRadius: '30px',
+  '&:hover': {
+    background: '#fff',
+    color: '#000',
+  },
+});
 function login({ setAuthRenderValue }) {
   const handleConReandering = (value) => {
     setAuthRenderValue(value);
@@ -35,6 +47,7 @@ function login({ setAuthRenderValue }) {
 
   return (
     <Stack className="login--container" p={5}>
+    
       <Box className="application--logo" mb={5}>
         <img
           style={{ width: '5rem' }}

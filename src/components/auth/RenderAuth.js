@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 import Login from '../auth/Login';
 import ContactUs from './ContactUs';
 import PrivicyPolicy from './PrivicyPolicy';
+import ResponsiveMenu from './ResponsiveMenu';
 import SingUp from './SingUp';
 function RenderAuth() {
-  const [authRenderValue, setAuthRenderValue] = useState(0);
+  const [authRenderValue, setAuthRenderValue] = useState(99);
   return (
     <>
       <Box
@@ -27,6 +28,11 @@ function RenderAuth() {
         className={`auth_shown ${authRenderValue === 3 ? '' : 'auth_hidden'}`}
       >
         <ContactUs setAuthRenderValue={setAuthRenderValue} />
+      </Box>
+      <Box
+        className={`auth_shown ${authRenderValue === 99 ? '' : 'auth_hidden'}`}
+      >
+        <ResponsiveMenu setAuthRenderValue={setAuthRenderValue} />
       </Box>
     </>
   );
