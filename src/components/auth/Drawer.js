@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { IconButton, Typography, Box, Drawer } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+import React, { useState } from 'react';
+import { IconButton, Typography, Box, Drawer } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 function MuiDrawer() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   return (

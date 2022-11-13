@@ -130,13 +130,14 @@ function Nav({ movieLink, homeLink }) {
           onClose={() => setIsDrawerOpen(false)}
         >
           <Box
-            // height="100vh"
+            minHeight="100%"
             textAlign="center"
             role="presentation"
             sx={{
               backgroundColor: '#696969',
               color: '#FFF',
               width: { xs: '80vw', sm: '60vw', md: '50vw', lg: '30vw' },
+              boxSizing: 'border-box',
             }}
           >
             <RenderAuth />

@@ -1,16 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react';
-import Cast from '../cast/Cast';
-import { Typography, Stack, Box, Rating, Button } from '@mui/material';
+import React, { useContext } from 'react';
+import { Typography, Stack, Box, Button } from '@mui/material';
+import { Store } from '../store/Store';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import ButtIcon from './ButtIcon';
-import { Store } from '../store/Store';
 import styled from '@emotion/styled';
 import MovieSummay from './MovieSummay';
+import Cast from '../cast/Cast';
 import MoviePoster from '../category/MoviePoster';
-// import './moviesDetails.css';
+
 const MovieButton = styled(Button)({
   backgroundColor: 'rgba(255,255,255,0.5)',
   color: '#fff',
@@ -27,66 +27,10 @@ const MovieButton = styled(Button)({
 });
 function MovieDeatils() {
   const { state, dispatch } = useContext(Store);
-  const [catagory, setCatagory] = useState([]);
   const { movies } = state;
   const { movieItem } = movies;
   const movieInfo = movieItem;
-  useEffect(() => {
-    {
-      if (movieInfo.genre_ids.includes(28)) {
-        setCatagory((prevNames) => [...prevNames, 'Action']);
-      }
-      if (movieInfo.genre_ids.includes(12)) {
-        setCatagory((prevNames) => [...prevNames, 'Adventure']);
-      }
-      if (movieInfo.genre_ids.includes(16)) {
-        setCatagory((prevNames) => [...prevNames, 'Animation ']);
-      }
-      if (movieInfo.genre_ids.includes(35)) {
-        setCatagory((prevNames) => [...prevNames, ' Comedy ']);
-      }
-      if (movieInfo.genre_ids.includes(80)) {
-        setCatagory((prevNames) => [...prevNames, ' Crime  ']);
-      }
-      if (movieInfo.genre_ids.includes(99)) {
-        setCatagory((prevNames) => [...prevNames, 'Documentary ']);
-      }
-      if (movieInfo.genre_ids.includes(18)) {
-        setCatagory((prevNames) => [...prevNames, 'Drama ']);
-      }
-      if (movieInfo.genre_ids.includes(10751)) {
-        setCatagory((prevNames) => [...prevNames, 'Family ']);
-      }
-      if (movieInfo.genre_ids.includes(14)) {
-        setCatagory((prevNames) => [...prevNames, 'Fantasy']);
-      }
-      if (movieInfo.genre_ids.includes(36)) {
-        setCatagory((prevNames) => [...prevNames, 'History']);
-      }
-      if (movieInfo.genre_ids.includes(10749)) {
-        setCatagory((prevNames) => [...prevNames, 'Romance ']);
-      }
-      if (movieInfo.genre_ids.includes(878)) {
-        setCatagory((prevNames) => [...prevNames, 'Science Fiction ']);
-      }
-      if (movieInfo.genre_ids.includes(10770)) {
-        setCatagory((prevNames) => [...prevNames, 'TV Movie  ']);
-      }
-      if (movieInfo.genre_ids.includes(53)) {
-        setCatagory((prevNames) => [...prevNames, 'Thriller       ']);
-      }
-      if (movieInfo.genre_ids.includes(10752)) {
-        setCatagory((prevNames) => [...prevNames, 'War']);
-      }
-      if (movieInfo.genre_ids.includes(37)) {
-        setCatagory((prevNames) => [...prevNames, 'Western']);
-      }
-      if (movieInfo.genre_ids.includes(9648)) {
-        setCatagory((prevNames) => [...prevNames, ' Mystery ']);
-      }
-    }
-  }, []);
-  console.log(movieInfo);
+
   return (
     <>
       <Stack
@@ -148,13 +92,7 @@ function MovieDeatils() {
               />
             </Box>
             <Box>
-              <MovieSummay
-                catagory={catagory}
-                movieName={movieInfo.title}
-                movieSummery={movieInfo.overview}
-                year={`${movieInfo.release_date.split('-', 1)}`}
-                rating={movieInfo.vote_average}
-              />
+              <MovieSummay data={movieInfo} />
               <Stack
                 sx={{
                   flexDirection: {
@@ -239,8 +177,6 @@ function MovieDeatils() {
               Full Cast & Crew
             </Typography>
             <Stack direction="row" flexWrap="wrap" gap={2}>
-              <Cast />
-              <Cast />
               <Cast />
             </Stack>
           </Stack>

@@ -1,8 +1,5 @@
 body {
   margin: 0;
-  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', */
-  /* sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Roboto', sans-serif;
@@ -26,6 +23,19 @@ select:hover {
 .active > p {
   color: #000;
 }
-.ccf {
-  color: blueviolet;
+.poster_hover {
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+}
+.poster_hover:hover {
+  transform: translateY(-1rem);
+  box-shadow: rgb(255 255 255 / 56%) 7px 3px 6px 2px;
+}
+
+.auth_shown {
+  display: block;
+}
+.auth_hidden {
+  display: none;
+  color: rgb(255, 99, 71);
 }

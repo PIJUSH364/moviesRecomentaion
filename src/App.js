@@ -25,7 +25,7 @@ function App() {
       {/* <Route path="/" element={<MovieSummay />} /> */}
       <Route path="/movies" element={<AllMovies />} />
       <Route path="*" element={<NotFound />} />
-      <Route path="/mv" element={<MovieDeatils />} />
+      <Route path="/moviedetails" element={<MovieDeatils />} />
     </Routes>
   );
 }

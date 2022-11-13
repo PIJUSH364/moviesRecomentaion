@@ -1,14 +1,33 @@
-import React, { useContext } from 'react';
+import { Box } from '@mui/material';
+import React, { useState } from 'react';
 import Login from '../auth/Login';
-import { Store } from '../store/Store';
+import ContactUs from './ContactUs';
+import PrivicyPolicy from './PrivicyPolicy';
 import SingUp from './SingUp';
 function RenderAuth() {
-  const { state, dispatch } = useContext(Store);
-  const { auth } = state;
+  const [authRenderValue, setAuthRenderValue] = useState(0);
   return (
     <>
-      {/* <Login /> */}
-      <SingUp />
+      <Box
+        className={`auth_shown ${authRenderValue === 0 ? '' : 'auth_hidden'}`}
+      >
+        <Login setAuthRenderValue={setAuthRenderValue} />
+      </Box>
+      <Box
+        className={`auth_shown ${authRenderValue === 1 ? '' : 'auth_hidden'}`}
+      >
+        <SingUp setAuthRenderValue={setAuthRenderValue} />
+      </Box>
+      <Box
+        className={`auth_shown ${authRenderValue === 2 ? '' : 'auth_hidden'}`}
+      >
+        <PrivicyPolicy setAuthRenderValue={setAuthRenderValue} />
+      </Box>
+      <Box
+        className={`auth_shown ${authRenderValue === 3 ? '' : 'auth_hidden'}`}
+      >
+        <ContactUs setAuthRenderValue={setAuthRenderValue} />
+      </Box>
     </>
   );
 }

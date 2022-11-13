@@ -86,7 +86,7 @@ function Sorting() {
           </MovieButton>
           <MovieButton onClick={() => setActiveGenre(28)}>action</MovieButton>
         </Stack>
-        <Stack
+        {/* <Stack
           sx={{
             flexDirection: {
               xs: 'column',
@@ -106,7 +106,7 @@ function Sorting() {
           <MovieButton startIcon={<TextFieldsIcon />}>title</MovieButton>
 
           <MovieButton startIcon={<DateRangeIcon />}>Year</MovieButton>
-        </Stack>
+        </Stack> */}
       </Stack>
       <Box
         sx={{

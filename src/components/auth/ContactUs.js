@@ -24,9 +24,13 @@ const CssTextField = styled(TextField)({
   },
 });
 
-function ContactUs() {
+function ContactUs({ setAuthRenderValue }) {
+  const handleConReandering = (value) => {
+    setAuthRenderValue(value);
+  };
+
   return (
-    <Stack className="login--container" p={5}>
+    <Stack className="login--container" p={3}>
       <Box className="application--logo" mb={5}>
         <img
           style={{ width: '5rem' }}
@@ -49,8 +53,15 @@ function ContactUs() {
           <FormButton body="Send Message!" icon={SendIcon} />
         </Stack>
       </Box>
-
-      <Typography variant="body2" textAlign="right" mt={3}>
+      <Typography
+        variant="body2"
+        textAlign="right"
+        mt={3}
+        style={{
+          cursor: 'pointer',
+        }}
+        onClick={() => handleConReandering(2)}
+      >
         Privicy Policy!
       </Typography>
     </Stack>

@@ -28,10 +28,11 @@ const CssTextField = styled(TextField)({
   },
 });
 
-function login() {
-  const { state, dispatch } = useContext(Store);
-  const { auth } = state;
-  console.log('auth login', { auth });
+function login({ setAuthRenderValue }) {
+  const handleConReandering = (value) => {
+    setAuthRenderValue(value);
+  };
+
   return (
     <Stack className="login--container" p={5}>
       <Box className="application--logo" mb={5}>
@@ -49,24 +50,32 @@ function login() {
           <CssTextField
             label="Email"
             id="custom-css-outlined-input"
-            // defaultValue="youremail@gmail.com"
             sx={{ input: { color: '#fff' } }}
           />
           <CssTextField label="Password" id="custom-css-outlined-input" />
           <FormButton body="Sign in to Your Account !" icon={LoginIcon} />
         </Stack>
-      </Box>{' '}
-      <Link to="signup">
-        <Typography
-          variant="body1"
-          textAlign="left"
-          mt={3}
-          onClick={() => console.log('login')}
-        >
-          Create An Account !
-        </Typography>
-      </Link>
-      <Typography variant="body2" textAlign="right" mt={3}>
+      </Box>
+      <Typography
+        variant="body1"
+        textAlign="left"
+        mt={3}
+        style={{
+          cursor: 'pointer',
+        }}
+        onClick={() => handleConReandering(1)}
+      >
+        Create An Account !
+      </Typography>
+      <Typography
+        variant="body2"
+        textAlign="right"
+        mt={3}
+        style={{
+          cursor: 'pointer',
+        }}
+        onClick={() => handleConReandering(2)}
+      >
         Privicy Policy!
       </Typography>
     </Stack>

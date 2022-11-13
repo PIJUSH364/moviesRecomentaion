@@ -31,8 +31,6 @@ function Slider(props) {
         minHeight: { xs: 'auto', md: 'auto', lg: '72vh', xl: '70vh' },
       }}
     >
-      {/* <Nav /> */}
-
       <Stack
         sx={{
           flexDirection: { xs: 'column', md: 'row', lg: 'row', xl: 'row' },
@@ -48,7 +46,7 @@ function Slider(props) {
           }}
         >
           <Typography variant="h3" pb={2}>
-            Breaking bad
+            All Quiet on the Western Front
           </Typography>
 
           <div className="slider--rating">
@@ -78,12 +76,12 @@ function Slider(props) {
                 textAlign: 'justify',
               }}
             >
-              Unlucky assassin Ladybug (Brad Pitt) is determined to do his job
-              peacefully after one too many gigs has gone off the rails. Fate
-              has other plans, however: Ladybug's latest mission puts him on a
-              collision course with lethal adversaries from around the
-              globe--all with connected, yet conflicting, objectives--on the
-              world's fastest train
+              Paul Baumer and his friends Albert and Muller, egged on by
+              romantic dreams of heroism, voluntarily enlist in the German army.
+              Full of excitement and patriotic fervour, the boys
+              enthusiastically march into a war they believe in. But once on the
+              Western Front, they discover the soul-destroying horror of World
+              War I.
             </Typography>
           </div>
         </Stack>
