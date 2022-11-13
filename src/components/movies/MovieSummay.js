@@ -5,55 +5,55 @@ function MovieSummay({ data }) {
   const [catagory, setCatagory] = useState([]);
   useEffect(() => {
     {
-      if (data.genre_ids.includes(28)) {
+      if (data.genre_ids?.includes(28)) {
         setCatagory((prevNames) => [...prevNames, 'Action']);
       }
-      if (data.genre_ids.includes(12)) {
+      if (data.genre_ids?.includes(12)) {
         setCatagory((prevNames) => [...prevNames, 'Adventure']);
       }
-      if (data.genre_ids.includes(16)) {
+      if (data.genre_ids?.includes(16)) {
         setCatagory((prevNames) => [...prevNames, 'Animation']);
       }
-      if (data.genre_ids.includes(35)) {
+      if (data.genre_ids?.includes(35)) {
         setCatagory((prevNames) => [...prevNames, 'Comedy']);
       }
-      if (data.genre_ids.includes(80)) {
+      if (data.genre_ids?.includes(80)) {
         setCatagory((prevNames) => [...prevNames, 'Crime']);
       }
-      if (data.genre_ids.includes(99)) {
+      if (data.genre_ids?.includes(99)) {
         setCatagory((prevNames) => [...prevNames, 'Documentary ']);
       }
-      if (data.genre_ids.includes(18)) {
+      if (data.genre_ids?.includes(18)) {
         setCatagory((prevNames) => [...prevNames, 'Drama']);
       }
-      if (data.genre_ids.includes(10751)) {
+      if (data.genre_ids?.includes(10751)) {
         setCatagory((prevNames) => [...prevNames, 'Family']);
       }
-      if (data.genre_ids.includes(14)) {
+      if (data.genre_ids?.includes(14)) {
         setCatagory((prevNames) => [...prevNames, 'Fantasy']);
       }
-      if (data.genre_ids.includes(36)) {
+      if (data.genre_ids?.includes(36)) {
         setCatagory((prevNames) => [...prevNames, 'History']);
       }
-      if (data.genre_ids.includes(10749)) {
+      if (data.genre_ids?.includes(10749)) {
         setCatagory((prevNames) => [...prevNames, 'Romance']);
       }
-      if (data.genre_ids.includes(878)) {
+      if (data.genre_ids?.includes(878)) {
         setCatagory((prevNames) => [...prevNames, 'Science Fiction']);
       }
-      if (data.genre_ids.includes(10770)) {
+      if (data.genre_ids?.includes(10770)) {
         setCatagory((prevNames) => [...prevNames, 'TV Movie']);
       }
-      if (data.genre_ids.includes(53)) {
+      if (data.genre_ids?.includes(53)) {
         setCatagory((prevNames) => [...prevNames, 'Thriller']);
       }
-      if (data.genre_ids.includes(10752)) {
+      if (data.genre_ids?.includes(10752)) {
         setCatagory((prevNames) => [...prevNames, 'War']);
       }
-      if (data.genre_ids.includes(37)) {
+      if (data.genre_ids?.includes(37)) {
         setCatagory((prevNames) => [...prevNames, 'Western']);
       }
-      if (data.genre_ids.includes(9648)) {
+      if (data.genre_ids?.includes(9648)) {
         setCatagory((prevNames) => [...prevNames, 'Mystery']);
       } else {
         setCatagory((prevNames) => [...prevNames, 'All']);
@@ -61,8 +61,6 @@ function MovieSummay({ data }) {
     }
   }, []);
   const rating = data.vote_average;
-  console.log('data', catagory);
-  console.log(data);
   return (
     <Stack
       className="movie--summery"
@@ -102,9 +100,9 @@ function MovieSummay({ data }) {
         </Box>
         <Box className="slider--content--deatils">
           <Typography variant="body1" className="ratingTen">
-            {`${data.release_date.split('-', 1)}`}&nbsp;&#x2022;
+            {`${data.release_date?.split('-', 1)}`}&nbsp;&#x2022;
             &nbsp;+10&nbsp;&#x2022;&nbsp;1hr 38min&nbsp;
-            {catagory.slice(0, 2).map((e, key) => {
+            {catagory?.slice(0, 2).map((e, key) => {
               return <span key={key}>&#x2022;&nbsp;{e}&nbsp;</span>;
             })}
           </Typography>

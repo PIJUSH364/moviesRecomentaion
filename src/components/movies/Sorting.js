@@ -1,4 +1,4 @@
-import { Stack, Button, Box } from '@mui/material';
+import { Stack, Button, Box, Typography, Avatar } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import data from '../store/data';
 import styled from '@emotion/styled';
@@ -25,6 +25,7 @@ const MovieButton = styled(Button)({
   },
 });
 function Sorting() {
+  const [pageNo, setPageNo] = useState(1);
   const [moviesData, setmoviesData] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [activeGenre, setActiveGenre] = useState(0);
@@ -39,11 +40,11 @@ function Sorting() {
       return e.genre_ids.includes(activeGenre);
     });
     setFiltered(filterData);
-  }, [activeGenre]);
+  }, [activeGenre, pageNo]);
 
   const fetchData = async () => {
     const response = await fetch(
-      'https://api.themoviedb.org/3/movie/popular?api_key=b6d57f45c1ed674f27d2d36fd0ed479c&language=en-US&page=1'
+      `https://api.themoviedb.org/3/movie/popular?api_key=b6d57f45c1ed674f27d2d36fd0ed479c&language=en-US&page=${pageNo}`
     );
     const data = await response.json();
     setmoviesData(data.results);
@@ -52,18 +53,30 @@ function Sorting() {
   const handleSelectValue = (value) => {
     setActiveGenre(value);
   };
-  const handleSort = () => {
-    console.log('handle sort');
-    const popularity = moviesData.sort(function (a, b) {
-      return b.vote_count - a.vote_count;
-    });
-    console.log(popularity);
-    setFiltered(popularity);
+  const handlePrevPageNo = () => {
+    if (pageNo > 1) {
+      setPageNo((prevPage) => prevPage - 1);
+    }
   };
 
-  const ratinng = data.sort(function (a, b) {
-    return b.vote_average - a.vote_average;
-  });
+  const handleNextPageNo = () => {
+    if (pageNo < 5) {
+      setPageNo((prevPage) => prevPage + 1);
+    }
+  };
+  console.log(pageNo);
+  // const handleSort = () => {
+  //   console.log('handle sort');
+  //   const popularity = moviesData.sort(function (a, b) {
+  //     return b.vote_count - a.vote_count;
+  //   });
+  //   console.log(popularity);
+  //   setFiltered(popularity);
+  // };
+
+  // const ratinng = data.sort(function (a, b) {
+  //   return b.vote_average - a.vote_average;
+  // });
   return (
     <Stack direction="column" mt={2}>
       <Stack
@@ -122,6 +135,23 @@ function Sorting() {
           return <MoviePoster key={key} data={e} />;
         })}
       </Box>
+      <Stack justifyContent="space-between" direction="row" p={2}>
+        <MovieButton
+          variant="contained"
+          onClick={handlePrevPageNo}
+          disabled={pageNo < 2 ? true : false}
+        >
+          pre
+        </MovieButton>
+        <Avatar>{pageNo}</Avatar>
+        <MovieButton
+          variant="contained"
+          onClick={handleNextPageNo}
+          disabled={pageNo < 5 ? false : true}
+        >
+          next
+        </MovieButton>
+      </Stack>
     </Stack>
   );
 }

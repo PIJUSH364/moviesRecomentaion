@@ -27,8 +27,6 @@ function AllMovies() {
         // always executed
       });
   }, []);
-  // console.log(typeof movieItem);
-  console.log('one movie', movieItem);
 
   return (
     <Box
@@ -44,13 +42,13 @@ function AllMovies() {
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundAttachment: 'fixed',
-        // minHeight: '70vh',
+        minHeight: '100vh',
       }}
       bgcolor="gray"
     >
       <Nav homeLink="/" movieLink="#" />
-      {/* <MovieSummay data={movieItem} /> */}
-      <Sorting />
+      <MovieSummay data={movieItem} />
+      <Sorting data={movieData} />
     </Box>
   );
 }
