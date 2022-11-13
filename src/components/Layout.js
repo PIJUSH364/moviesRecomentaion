@@ -9,10 +9,6 @@ import TopRatedSlider from './homeSlider/TopRatedSlider';
 function Layout() {
   return (
     <Box
-      // sx={{
-      //   background:
-      //     'linear-gradient(to right, rgba(0, 0, 0, 0.9) 10% ,#ccffff 90%)',
-      // }}
       sx={{
         background: `url(https://images.unsplash.com/photo-1615966650071-855b15f29ad1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=966&q=80)`,
         backgroundRepeat: 'no-repeat',

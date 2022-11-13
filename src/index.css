@@ -12,3 +12,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+select:hover {
+  cursor: pointer;
+  background: #fff;
+  color: #000;
+}
+.active {
+  transition: all 1.2s ease-in-out;
+  border-radius: 30px;
+  background-color: #fff;
+}
+.active > p {
+  color: #000;
+}

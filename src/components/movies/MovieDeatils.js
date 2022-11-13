@@ -97,7 +97,7 @@ function MovieDeatils() {
               movieSummery={movieInfo.overview}
               year={`${movieInfo.release_date.split('-', 1)}`}
               rating={movieInfo.vote_average / 2}
-            />{' '}
+            />
             <Stack
               sx={{
                 flexDirection: {

@@ -1,14 +1,14 @@
 import { Stack, Box, Typography, Drawer, IconButton } from '@mui/material';
 import React, { useContext, useState } from 'react';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { Store } from '../store/Store';
 import SearchBar from '../store/SearchBar';
 import data from '../store/data';
 import MenuIcon from '@mui/icons-material/Menu';
-import Login from '../auth/Login';
+
 import RenderAuth from '../auth/RenderAuth';
+import { NavNavLink } from 'react-router-dom';
 const bgImg = {
   background: `url(https://images.unsplash.com/photo-1537113399937-1cb9c5b273ac?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHN1bnNldCUyMGNvdXBsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60)`,
   backgroundRepeat: 'no-repeat',
@@ -40,6 +40,7 @@ function Nav() {
   const { state, dispatch } = useContext(Store);
   const { movies } = state;
   // console.log('moviesnav--', movies);
+
   return (
     <Stack
       direction="row"
@@ -76,22 +77,24 @@ function Nav() {
         <Stack
           direction="row"
           sx={{ display: { xs: 'none', sm: 'none', md: 'flex', lg: 'flex' } }}
+          ml={1}
+          gap={1}
         >
-          <Link to="/">
+          <NavLink to="/">
             <MenuItems>Home</MenuItems>
-          </Link>{' '}
-          <Link to="movies">
+          </NavLink>
+          <NavLink to="movies">
             <MenuItems>Movies</MenuItems>
-          </Link>{' '}
-          <Link to="/">
-            <MenuItems>Home4</MenuItems>
-          </Link>{' '}
-          <Link to="/">
-            <MenuItems>Home4</MenuItems>
-          </Link>{' '}
-          <Link to="/">
-            <MenuItems>Home4</MenuItems>
-          </Link>
+          </NavLink>{' '}
+          <NavLink to="shows">
+            <MenuItems>Shows</MenuItems>
+          </NavLink>{' '}
+          <NavLink to="livetv">
+            <MenuItems>LiveTv</MenuItems>
+          </NavLink>{' '}
+          <NavLink to="mylist">
+            <MenuItems>MyList</MenuItems>
+          </NavLink>
         </Stack>
       </Box>
       <Box
