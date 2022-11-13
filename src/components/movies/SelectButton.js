@@ -1,12 +1,22 @@
 import { Box } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-function SelectButton() {
-  const [selectvlue, setSelectvlue] = useState('all');
+function SelectButton({ data, setFiltered, activeGenre, setActiveGenre }) {
+  useEffect(() => {
+    if (activeGenre === 0) {
+      setFiltered(data);
+      return;
+    }
+    const filterData = data.filter((e) => {
+      return e.genre_ids.includes(activeGenre);
+    });
+    setFiltered(filterData);
+  }, [activeGenre]);
+
   const handleSelectValue = (e) => {
-    setSelectvlue(e.target.value);
-    console.log(selectvlue);
+    setActiveGenre(e.target.value);
   };
+  console.log(activeGenre);
   return (
     <>
       <Box
@@ -31,10 +41,9 @@ function SelectButton() {
             backgroundColor: 'rgba(255,255,255,0.6)',
           }}
         >
-          <option value="all">All genres</option>
-          <option value="comedy">Comedy</option>
-          <option value="action">Action</option>
-          <option value="thriller">Thriller</option>
+          <option value="0">All genres</option>
+          <option value="35">Comedy</option>
+          <option value="28">Action</option>
         </select>
       </Box>
     </>

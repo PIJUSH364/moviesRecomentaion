@@ -10,6 +10,7 @@ import SingUp from './components/auth/SingUp';
 import AllMovies from './components/movies/AllMovies';
 import SelectButton from './components/movies/SelectButton';
 import ActorDeatils from './components/movies/ActorDeatils';
+import NotFound from './components/NotFound';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       {/* <Route path="/movies" element={<MovieDeatils />} /> */}
       {/* <Route path="/" element={<MovieSummay />} /> */}
       <Route path="/movies" element={<AllMovies />} />
+      <Route path="*" element={<NotFound />} />
       {/* <Route path="/" element={<SelectButton />} /> */}
     </Routes>
   );

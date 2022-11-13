@@ -1,12 +1,11 @@
 import { Stack, Box, Typography, Drawer, IconButton } from '@mui/material';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { Store } from '../store/Store';
 import SearchBar from '../store/SearchBar';
 import data from '../store/data';
 import MenuIcon from '@mui/icons-material/Menu';
-
 import RenderAuth from '../auth/RenderAuth';
 import { NavNavLink } from 'react-router-dom';
 const bgImg = {
@@ -35,12 +34,23 @@ const MenuShown = styled(MenuIcon)({
     color: 'rgba(255,255,255,0.5)',
   },
 });
-function Nav() {
+function Nav({ movieLink, homeLink }) {
+  const [moviesData, setmoviesData] = useState([]);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const { state, dispatch } = useContext(Store);
   const { movies } = state;
   // console.log('moviesnav--', movies);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
+  const fetchData = async () => {
+    const response = await fetch(
+      'https://api.themoviedb.org/3/movie/popular?api_key=b6d57f45c1ed674f27d2d36fd0ed479c&language=en-US&page=1'
+    );
+    const data = await response.json();
+    setmoviesData(data.results);
+  };
   return (
     <Stack
       direction="row"
@@ -72,7 +82,7 @@ function Nav() {
         }}
       >
         <Box>
-          <SearchBar placeholder="Find movies..." data={data} />
+          <SearchBar placeholder="Find movies..." data={moviesData} />
         </Box>
         <Stack
           direction="row"
@@ -83,7 +93,7 @@ function Nav() {
           <NavLink to="/">
             <MenuItems>Home</MenuItems>
           </NavLink>
-          <NavLink to="movies">
+          <NavLink to={movieLink}>
             <MenuItems>Movies</MenuItems>
           </NavLink>{' '}
           <NavLink to="shows">

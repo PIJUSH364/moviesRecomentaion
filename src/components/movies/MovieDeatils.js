@@ -7,7 +7,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import ButtIcon from './ButtIcon';
 import { Store } from '../store/Store';
-import MoviesItem from '../category/MoviesItem';
+import MoviesItem from '../category/MoviePoster';
 import styled from '@emotion/styled';
 import MovieSummay from './MovieSummay';
 // import './moviesDetails.css';

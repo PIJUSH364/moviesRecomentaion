@@ -1,12 +1,11 @@
 import React, { Children } from 'react';
 import SwiperHome from './homeSlider/SwiperHome';
-import MovieDeatils from './movies/MovieDeatils';
-import MoviesItem from './category/MoviesItem';
 import { Typography, Stack, Box } from '@mui/material';
 import Slider from './homeSlider/Slider';
 import TopRatedSlider from './homeSlider/TopRatedSlider';
+import Nav from './nav/Nav';
 
-function Layout() {
+function Layout({ Children }) {
   return (
     <Box
       sx={{
@@ -16,17 +15,34 @@ function Layout() {
         // minHeight: '70vh',
       }}
     >
-      <SwiperHome />
       <Box
         sx={{
-          paddingLeft: { xs: '1rem', lg: '3rem' },
+          padding: {
+            xs: '0 0.21rem',
+            sm: '0 2rem',
+            md: '0 1rem',
+            lg: '0 3rem',
+            xl: '0 3rem',
+          },
         }}
       >
-        <Typography mt={1} variant="h4" color="#fff">
-          Top Rated
-        </Typography>
+        <Nav homeLink="/" movieLink="movies" />
       </Box>
-      <TopRatedSlider />
+      <main>
+        <SwiperHome />
+      </main>
+      <Box>
+        <Box
+          sx={{
+            paddingLeft: { xs: '1rem', lg: '3rem' },
+          }}
+        >
+          <Typography mt={1} variant="h4" color="#fff">
+            Top Rated
+          </Typography>{' '}
+          {/* <TopRatedSlider /> */}
+        </Box>
+      </Box>
     </Box>
   );
 }

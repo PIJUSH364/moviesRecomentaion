@@ -21,9 +21,9 @@ function SwiperHome() {
       <SwiperSlide>
         <Slider img="https://i.pinimg.com/564x/aa/a1/bb/aaa1bb0cd6a5e47a32a4859552c7ae73.jpg" />
       </SwiperSlide>
-      {/* <SwiperSlide>
-          <Slider img="https://i.pinimg.com/564x/5c/e0/35/5ce0356d1f9fcc016e9a4358d7d9f3c0.jpg" />
-        </SwiperSlide> */}
+      <SwiperSlide>
+        <Slider img="https://i.pinimg.com/564x/5c/e0/35/5ce0356d1f9fcc016e9a4358d7d9f3c0.jpg" />
+      </SwiperSlide>
     </Swiper>
   );
 }

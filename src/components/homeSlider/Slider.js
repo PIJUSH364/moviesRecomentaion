@@ -31,7 +31,7 @@ function Slider(props) {
         minHeight: { xs: 'auto', md: 'auto', lg: '72vh', xl: '70vh' },
       }}
     >
-      <Nav />
+      {/* <Nav /> */}
 
       <Stack
         sx={{

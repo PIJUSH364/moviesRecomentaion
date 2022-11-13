@@ -1,6 +1,5 @@
 import { Stack, Button, Box } from '@mui/material';
-import React from 'react';
-import DeleteIcon from '@mui/icons-material/Delete';
+import React, { useState, useEffect } from 'react';
 import data from '../store/data';
 import styled from '@emotion/styled';
 import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
@@ -9,48 +8,13 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import TextFieldsIcon from '@mui/icons-material/TextFields';
 import SelectButton from './SelectButton';
-import Cast from '../cast/Cast';
-import MoviesItem from '../category/MoviesItem';
-// {const handleRating = () => {
-//   alert('handle rating');
-// };
-// const ratinng = data.sort(function (a, b) {
-//   return b.vote_average - a.vote_average;
-// });
-// const popularity = data.sort(function (a, b) {
-//   return b.vote_count - a.vote_count;
-// });
+import MoviePoster from '../category/MoviePoster';
 
-// var yearDcending;
-// {
-//   // accening order year find
-//   function yearFind() {
-//     const year = data.map((e, key) => {
-//       return e.release_date.split('-', 1);
-//     });
-//     return year.flat(Infinity).map((e) => {
-//       return Number(e);
-//     });
-//   }
-//   yearDcending = yearFind().sort(function (a, b) {
-//     return b - a;
-//   });
-// }
-// // console.log(yearDcending);
-
-// {
-//   // movie name sorting
-//   const name = data.map((e) => {
-//     return e.name;
-//   });
-//   name.sort((a, b) => (a > b ? 1 : b > a ? -1 : 0));
-//   // console.log(name);
-// }}
 const MovieButton = styled(Button)({
   backgroundColor: 'rgba(255,255,255,0.5)',
   color: '#fff',
   fontSize: '15px',
-  padding: '10px 18px',
+  padding: '10px 20px',
   transition: 'all 1s ease-in-out',
   fontWeight: '600',
   fontFamily: 'monospace',
@@ -61,8 +25,47 @@ const MovieButton = styled(Button)({
   },
 });
 function Sorting() {
+  const [moviesData, setmoviesData] = useState([]);
+  const [filtered, setFiltered] = useState([]);
+  const [activeGenre, setActiveGenre] = useState(0);
+
+  useEffect(() => {
+    if (activeGenre === 0) {
+      fetchData();
+      setFiltered(moviesData);
+      return;
+    }
+    const filterData = moviesData.filter((e, key) => {
+      return e.genre_ids.includes(activeGenre);
+    });
+    setFiltered(filterData);
+  }, [activeGenre]);
+
+  const fetchData = async () => {
+    const response = await fetch(
+      'https://api.themoviedb.org/3/movie/popular?api_key=b6d57f45c1ed674f27d2d36fd0ed479c&language=en-US&page=1'
+    );
+    const data = await response.json();
+    setmoviesData(data.results);
+    setFiltered(data.results);
+  };
+  const handleSelectValue = (value) => {
+    setActiveGenre(value);
+  };
+  const handleSort = () => {
+    console.log('handle sort');
+    const popularity = moviesData.sort(function (a, b) {
+      return b.vote_count - a.vote_count;
+    });
+    console.log(popularity);
+    setFiltered(popularity);
+  };
+
+  const ratinng = data.sort(function (a, b) {
+    return b.vote_average - a.vote_average;
+  });
   return (
-    <Stack direction="column">
+    <Stack direction="column" mt={2}>
       <Stack
         justifyContent="space-between"
         sx={{
@@ -76,9 +79,13 @@ function Sorting() {
           gap: '5px',
         }}
       >
-        <Box>
-          <SelectButton />
-        </Box>
+        <Stack direction="row" gap={1}>
+          <MovieButton onClick={() => handleSelectValue(0)}>all</MovieButton>
+          <MovieButton onClick={() => handleSelectValue(35)}>
+            comedey
+          </MovieButton>
+          <MovieButton onClick={() => setActiveGenre(28)}>action</MovieButton>
+        </Stack>
         <Stack
           sx={{
             flexDirection: {
@@ -91,32 +98,30 @@ function Sorting() {
             gap: '5px',
           }}
         >
-          <MovieButton startIcon={<QueryBuilderIcon />}>
-            Watch Trailer
-          </MovieButton>{' '}
-          <MovieButton startIcon={<StarHalfIcon />}>Watch Trailer</MovieButton>{' '}
-          <MovieButton startIcon={<VisibilityIcon />}>
-            Watch Trailer
-          </MovieButton>{' '}
-          <MovieButton startIcon={<VisibilityIcon />}>
-            Watch Trailer
-          </MovieButton>{' '}
-          <MovieButton startIcon={<TextFieldsIcon />}>
-            Watch Trailer
-          </MovieButton>{' '}
+          <MovieButton startIcon={<QueryBuilderIcon />}>newest</MovieButton>
+          <MovieButton startIcon={<StarHalfIcon />} onClick={handleSort}>
+            Rating
+          </MovieButton>
+          <MovieButton startIcon={<VisibilityIcon />}>Views</MovieButton>
+          <MovieButton startIcon={<TextFieldsIcon />}>title</MovieButton>
+
+          <MovieButton startIcon={<DateRangeIcon />}>Year</MovieButton>
         </Stack>
       </Stack>
-      <Stack direction="row" gap={5} flexWrap="wrap" mt={3}>
-        <MoviesItem />
-        <MoviesItem />
-        <MoviesItem />
-        <MoviesItem />
-        <MoviesItem />
-        <MoviesItem />
-        <MoviesItem />
-        <MoviesItem />
-        <MoviesItem />
-      </Stack>
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit,minmax(150px,1fr))',
+          gridRowGap: '2rem',
+          gridColumnGap: '1rem',
+          justifyItems: 'center',
+        }}
+        mt={3}
+      >
+        {filtered.map((e, key) => {
+          return <MoviePoster key={key} data={e} />;
+        })}
+      </Box>
     </Stack>
   );
 }

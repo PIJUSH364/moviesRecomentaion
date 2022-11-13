@@ -1,18 +1,14 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 import { Stack, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
 import './searchbar.css';
-import { Store } from './Store';
-
 
 function SearchBar({ placeholder, data }) {
-  const { state, dispatch } = useContext(Store);
-  const moviePreviwHandeler = (item) => {
-    dispatch({ type: 'SHOW_MOVIE_PREVIEW', payload: { ...item } });
-    console.log('dispatch done', item);
-  };
+  data.map((e, key) => {
+    console.log(key, e.title.toLowerCase());
+  });
   const [filterdata, setFilterdata] = useState([]);
   const [inputvalue, setInputvalue] = useState('');
   const [icon, setIcon] = useState(<SearchIcon />);
@@ -27,7 +23,7 @@ function SearchBar({ placeholder, data }) {
     const searchWord = e.target.value;
     setInputvalue(searchWord);
     const newFilterData = data.filter((e) => {
-      return e.name.toLowerCase().includes(searchWord.toLowerCase());
+      return e.title.toLowerCase().includes(searchWord.toLowerCase());
     });
     if (searchWord === '') {
       setFilterdata([]);
@@ -86,7 +82,7 @@ function SearchBar({ placeholder, data }) {
                   key={key}
                   onClick={() => moviePreviwHandeler(e)}
                 >
-                  {e.name}
+                  {e.title}
                 </p>
               </Link>
             );

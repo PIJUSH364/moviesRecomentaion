@@ -1,12 +1,11 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper';
-
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import data from '../store/data';
-import MoviesItem from '../category/MoviesItem';
+import MoviePoster from '../category/MoviePoster';
 function TopRatedSlider() {
   return (
     <>
@@ -23,7 +22,7 @@ function TopRatedSlider() {
         {data.map((e) => {
           return (
             <SwiperSlide key={e.id}>
-              <MoviesItem />
+              <MoviePoster />
             </SwiperSlide>
           );
         })}

@@ -26,3 +26,6 @@ select:hover {
 .active > p {
   color: #000;
 }
+.ccf {
+  color: blueviolet;
+}
