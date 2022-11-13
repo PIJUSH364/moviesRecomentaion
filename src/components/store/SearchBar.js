@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 import { Stack, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
 import './searchbar.css';
+import { Store } from './Store';
 
 function SearchBar({ placeholder, data }) {
-  data.map((e, key) => {
-    console.log(key, e.title.toLowerCase());
-  });
+  const { state, dispatch } = useContext(Store);
   const [filterdata, setFilterdata] = useState([]);
   const [inputvalue, setInputvalue] = useState('');
   const [icon, setIcon] = useState(<SearchIcon />);
@@ -34,6 +33,11 @@ function SearchBar({ placeholder, data }) {
     }
   };
 
+  const moviePreviwHandeler = (item) => {
+    dispatch({ type: 'SHOW_MOVIE_PREVIEW', payload: { ...item } });
+    // console.log('dispatch done', item);
+    console.log('move');
+  };
   return (
     <Box width="100%">
       <Stack
@@ -72,11 +76,7 @@ function SearchBar({ placeholder, data }) {
         >
           {filterdata.slice(0, 2).map((e, key) => {
             return (
-              <Link
-                to="movies"
-                key={key}
-                onClick={() => moviePreviwHandeler(e)}
-              >
+              <Link to="mv" key={key} onClick={() => moviePreviwHandeler(e)}>
                 <p
                   className="movie--name"
                   key={key}

@@ -1,14 +1,9 @@
 import { Rating, Stack, Typography, Box } from '@mui/material';
 import React from 'react';
 
-function MovieSummay({
-  movieName,
-  outOfFive,
-  outOfTen,
-  movieSummery,
-  year,
-  rating,
-}) {
+function MovieSummay({ movieName, movieSummery, year, rating, catagory }) {
+  console.log('outy', typeof rating);
+  console.log(catagory);
   return (
     <Stack
       className="movie--summery"
@@ -23,8 +18,8 @@ function MovieSummay({
         color: '#fff',
       }}
     >
-      <Typography variant="h3" mt={6}>
-        Black Panther: Wakanda Forever
+      <Typography variant="h3" mt={2}>
+        {movieName}
       </Typography>{' '}
       <Box className="slider--rating">
         <Box className="slider--imdb--rating">
@@ -33,34 +28,30 @@ function MovieSummay({
               className="ratingTen"
               sx={{ display: 'flex', alignItems: 'center' }}
             >
-              {outOfFive}
               &nbsp;
               <Rating
                 name="read-only"
                 size="medium"
-                value={4.5}
+                value={rating / 2}
                 precision={0.1}
                 readOnly
               />
-              &nbsp; &#x2022; {outOfTen} &nbsp;
+              &nbsp; &#x2022; {rating}/10 &nbsp;
               <button className="button--imdb">IMDb </button>
             </Box>
           </span>
         </Box>
         <Box className="slider--content--deatils">
           <Typography variant="body1" className="ratingTen">
-            2018 &nbsp;&#x2022; &nbsp;+10&nbsp;&#x2022;&nbsp;1hr
-            38min&nbsp;&#x2022;&nbsp;&nbsp;Fantasy&#x2022;&nbsp;Horror
+            {year}&nbsp;&#x2022; &nbsp;+10&nbsp;&#x2022;&nbsp;1hr 38min&nbsp;
+            {catagory.slice(0, 2).map((e, key) => {
+              return <span key={key}>&#x2022;&nbsp;{e}</span>;
+            })}
           </Typography>
         </Box>
         <Box style={{ minHeight: '6rem' }} pt={2}>
           <Typography variant="body1" textAlign="justify">
-            Queen Ramonda, Shuri, M’Baku, Okoye and the Dora Milaje fight to
-            protect their nation from intervening world powers in the wake of
-            King T’Challa’s death. As the Wakandans strive to embrace their next
-            chapter, the heroes must band together with the help of War Dog
-            Nakia and Everett Ross and forge a new path for the kingdom of
-            Wakanda.
+            {movieSummery}
           </Typography>
         </Box>
       </Box>
