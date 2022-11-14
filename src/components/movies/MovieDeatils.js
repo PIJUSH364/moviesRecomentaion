@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Typography, Stack, Box, Button } from '@mui/material';
 import { Store } from '../store/Store';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
@@ -25,7 +25,9 @@ const MovieButton = styled(Button)({
     color: '#000',
   },
 });
+console.log('knhnwochw');
 function MovieDeatils() {
+  const [review, setReview] = useState(false);
   const { state, dispatch } = useContext(Store);
   const { movies } = state;
   const { movieItem } = movies;
@@ -161,8 +163,22 @@ function MovieDeatils() {
                     alignContent: 'center',
                   }}
                 >
-                  <ButtIcon icon={QuestionAnswerIcon} />
-                  <ButtIcon icon={StarBorderIcon} />
+                  <span
+                    style={{
+                      cursor: 'pointer',
+                    }}
+                    onClick={() => alert(`Sorry we can't store Your data`)}
+                  >
+                    <ButtIcon icon={QuestionAnswerIcon} />
+                  </span>
+                  <span
+                    style={{
+                      cursor: 'pointer',
+                    }}
+                    onClick={() => setReview(!review)}
+                  >
+                    <ButtIcon icon={StarBorderIcon} value={review} />
+                  </span>
                 </Stack>
               </Stack>
             </Box>

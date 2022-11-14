@@ -4,7 +4,8 @@ import { Box } from '@mui/material';
 // import IconButton from '@mui/material/IconButton';
 import SvgIcon from '@mui/material/SvgIcon';
 
-function ButtIcon(props) {
+function ButtIcon({ icon, value }) {
+  console.log(value);
   return (
     <Box
       sx={{
@@ -14,9 +15,14 @@ function ButtIcon(props) {
       }}
       p={1}
     >
-      <SvgIcon component={props.icon} inheritViewBox sx={{ fontSize: 25 }} />
+      <SvgIcon
+        component={icon}
+        inheritViewBox
+        sx={{ fontSize: 25, color: value ? '#FF9529' : '' }}
+      />
     </Box>
   );
 }
 
 export default ButtIcon;
+// review ? 'red' : ''

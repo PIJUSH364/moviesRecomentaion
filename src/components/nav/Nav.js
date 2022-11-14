@@ -17,9 +17,9 @@ const bgImg = {
 const MenuItems = styled(Typography)({
   color: 'rgba(255,255,255,0.8)',
   fontFamily: 'monospace',
-  fontSize: '1.4rem',
+  fontSize: '1.2rem',
   fontFamily: 500,
-  padding: '5px 1.4rem',
+  padding: '3px 1.4rem',
   transition: 'all 1.2s ease-in-out',
   borderRadius: '30px',
   '&:hover': {
@@ -55,7 +55,7 @@ function Nav({ movieLink, homeLink }) {
     <Stack
       direction="row"
       justifyContent="space-between"
-      pt={3}
+      alignItems="center"
       sx={{
         height: { xs: '13vh', sm: '13vh', md: '18vh', lg: '15vh', xl: '20vh' },
       }}
@@ -78,7 +78,8 @@ function Nav({ movieLink, homeLink }) {
             md: '1.4fr 2fr',
             lg: '1.2fr 2fr',
           },
-          alignItems: 'baseline',
+          alignItems: 'center',
+          justifyItems: 'stretch',
         }}
       >
         <Box>

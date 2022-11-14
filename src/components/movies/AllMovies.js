@@ -17,7 +17,13 @@ function AllMovies() {
         // handle success
         const data = response.data.results;
         setmovieData(data);
-        setMovieItem(data[8]);
+        {
+          function randomNumGenerator(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+          }
+          const rndInt = randomNumGenerator(1, 16);
+          setMovieItem(data[rndInt]);
+        }
       })
       .catch(function (error) {
         // handle error
