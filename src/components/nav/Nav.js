@@ -34,7 +34,7 @@ const MenuShown = styled(MenuIcon)({
     color: 'rgba(255,255,255,0.5)',
   },
 });
-function Nav({ movieLink, homeLink }) {
+function Nav() {
   const [moviesData, setmoviesData] = useState([]);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const { state, dispatch } = useContext(Store);
@@ -94,7 +94,7 @@ function Nav({ movieLink, homeLink }) {
           <NavLink to="/">
             <MenuItems>Home</MenuItems>
           </NavLink>
-          <NavLink to={movieLink}>
+          <NavLink to="/">
             <MenuItems>Movies</MenuItems>
           </NavLink>{' '}
           <NavLink to="shows">

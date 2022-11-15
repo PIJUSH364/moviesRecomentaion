@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/src/router
 /.pnp
 .pnp.js
 /.env

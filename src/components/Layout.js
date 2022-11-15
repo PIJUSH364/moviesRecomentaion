@@ -1,9 +1,10 @@
 import React, { Children } from 'react';
 import SwiperHome from './homeSlider/SwiperHome';
-import { Typography, Stack, Box } from '@mui/material';
+import { Typography, Stack, Box, Button } from '@mui/material';
 import Slider from './homeSlider/Slider';
 import TopRatedSlider from './homeSlider/TopRatedSlider';
 import Nav from './nav/Nav';
+import { Link } from 'react-router-dom';
 
 function Layout({ Children }) {
   return (
@@ -27,7 +28,7 @@ function Layout({ Children }) {
           },
         }}
       >
-        <Nav homeLink="/" movieLink="movies" />
+        <Nav />
       </Box>
       <main>
         <SwiperHome />
@@ -38,6 +39,9 @@ function Layout({ Children }) {
             paddingLeft: { xs: '1rem', lg: '3rem' },
           }}
         >
+          <Link to="moviedetails">
+            <Button>demo</Button>
+          </Link>
           <Typography mt={1} variant="h4" color="#fff">
             Top Rated
           </Typography>{' '}

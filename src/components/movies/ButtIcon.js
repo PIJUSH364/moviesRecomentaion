@@ -5,7 +5,6 @@ import { Box } from '@mui/material';
 import SvgIcon from '@mui/material/SvgIcon';
 
 function ButtIcon({ icon, value }) {
-  console.log(value);
   return (
     <Box
       sx={{

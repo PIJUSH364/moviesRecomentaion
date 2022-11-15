@@ -30,7 +30,7 @@ function TopRatedSlider() {
         // always executed
       });
   }, []);
-  console.log(movieData);
+
   return (
     <Box
       sx={{
