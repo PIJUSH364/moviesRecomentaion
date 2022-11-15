@@ -1,4 +1,2 @@
-1.nav component
-2)home slider component
+## feature ::
 
-\*\* comment and review pending
