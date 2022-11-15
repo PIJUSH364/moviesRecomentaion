@@ -1,11 +1,14 @@
-import { Box } from '@mui/material';
+import { Box, IconButton } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Nav from '../nav/Nav';
 import MovieSummay from './MovieSummay';
 import Sorting from './Sorting';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 function AllMovies() {
+  const navigate = useNavigate();
   const [movieData, setmovieData] = useState([]);
   const [movieItem, setMovieItem] = useState({});
   useEffect(() => {
@@ -52,7 +55,27 @@ function AllMovies() {
       }}
       bgcolor="gray"
     >
-      <Nav homeLink="/" movieLink="#" />
+      {' '}
+      <span onClick={() => navigate(-1)}>
+        <Box
+          color="#fff"
+          sx={{
+            paddingBottom: {
+              xs: '1rem',
+              sm: '0.5rem',
+              md: '3px',
+              lg: '3px',
+              xl: '0',
+            },
+          }}
+        >
+          <IconButton aria-label="delete" size="large" color="primary">
+            <ArrowBackIosIcon fontSize="inherit" />
+          </IconButton>
+          Home
+        </Box>
+      </span>
+      {/* <Nav homeLink="/" movieLink="#" /> */}
       <MovieSummay data={movieItem} />
       <Sorting data={movieData} />
     </Box>

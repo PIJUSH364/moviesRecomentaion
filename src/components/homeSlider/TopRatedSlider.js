@@ -1,13 +1,10 @@
 import React, { lazy, Suspense, useEffect, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import data from '../store/data';
-import fetchData from '../store/MovieData';
 import axios from 'axios';
-import { Box, Stack, Typography } from '@mui/material';
+import { Box, Skeleton, Stack } from '@mui/material';
+import PreRender from '../movies/PreRender';
 const MoviePoster = lazy(() => import('../category/MoviePoster'));
 
 function TopRatedSlider() {
@@ -15,7 +12,8 @@ function TopRatedSlider() {
   function randomIntFromInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
-  const pageNo = randomIntFromInterval(1, 700);
+
+  const pageNo = randomIntFromInterval(1, 100);
   useEffect(() => {
     axios
       .get(
@@ -47,13 +45,17 @@ function TopRatedSlider() {
         justifyItems: 'center',
       }}
     >
-      {movieData.slice(0, 14).map((item, key) => {
-        return (
-          <Suspense key={key} fallback={<span>Loading...</span>}>
-            <MoviePoster data={item} />
-          </Suspense>
-        );
-      })}
+      {movieData.length === 0 ? (
+        <PreRender />
+      ) : (
+        movieData.slice(0, 14).map((item, key) => {
+          return (
+            <Suspense key={key} fallback={<span>Loading...</span>}>
+              <MoviePoster data={item} />
+            </Suspense>
+          );
+        })
+      )}
     </Box>
   );
 }

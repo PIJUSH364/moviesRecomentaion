@@ -6,12 +6,22 @@ export const Store = createContext();
 const initialState = {
   // movies: {
   //   movieItem: [],
+  //   favMovie: [
+  //     {
+  //       x: 9,
+  //       t: 'yu',
+  //     },
+  //   ],
   // },
   auth: 'login',
   // auth:Cookies.get('auth'),
+
   movies: Cookies.get('movies')
     ? JSON.parse(Cookies.get('movies'))
-    : { movieItem: [] },
+    : {
+        movieItem: [],
+        favMovie: [{}],
+      },
 };
 
 function reducer(state, action) {
@@ -19,6 +29,15 @@ function reducer(state, action) {
     case 'SHOW_MOVIE_PREVIEW': {
       const currentMovie = action.payload;
       state.movies.movieItem = currentMovie;
+
+      // cookies storage
+      Cookies.set('movies', JSON.stringify({ ...state.movies }));
+      return { ...state, movies: { ...state.movies } };
+    }
+
+    case 'ADD_TO_FAV': {
+      const currentFavMovie = action.payload;
+      state.movies.favMovie = [{...currentFavMovie}];
 
       // cookies storage
       Cookies.set('movies', JSON.stringify({ ...state.movies }));

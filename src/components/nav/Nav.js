@@ -4,10 +4,8 @@ import { NavLink, Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { Store } from '../store/Store';
 import SearchBar from '../store/SearchBar';
-import data from '../store/data';
 import MenuIcon from '@mui/icons-material/Menu';
 import RenderAuth from '../auth/RenderAuth';
-import { NavNavLink } from 'react-router-dom';
 const bgImg = {
   background: `url(https://images.unsplash.com/photo-1537113399937-1cb9c5b273ac?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHN1bnNldCUyMGNvdXBsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60)`,
   backgroundRepeat: 'no-repeat',
@@ -37,9 +35,7 @@ const MenuShown = styled(MenuIcon)({
 function Nav() {
   const [moviesData, setmoviesData] = useState([]);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const { state, dispatch } = useContext(Store);
-  const { movies } = state;
-  // console.log('moviesnav--', movies);
+
   useEffect(() => {
     fetchData();
   }, []);

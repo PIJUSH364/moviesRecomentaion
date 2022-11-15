@@ -1,10 +1,8 @@
-import React, { Children } from 'react';
+import React from 'react';
 import SwiperHome from './homeSlider/SwiperHome';
-import { Typography, Stack, Box, Button } from '@mui/material';
-import Slider from './homeSlider/Slider';
+import { Typography, Box } from '@mui/material';
 import TopRatedSlider from './homeSlider/TopRatedSlider';
 import Nav from './nav/Nav';
-import { Link } from 'react-router-dom';
 
 function Layout({ Children }) {
   return (
@@ -41,7 +39,7 @@ function Layout({ Children }) {
         >
           <Typography mt={1} variant="h4" color="#fff">
             Top Rated
-          </Typography>{' '}
+          </Typography>
           <TopRatedSlider />
         </Box>
       </Box>

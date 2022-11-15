@@ -13,6 +13,7 @@ import MoviePoster from '../category/MoviePoster';
 import axios from 'axios';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useNavigate } from 'react-router-dom';
+import PreRender from './PreRender';
 
 const MovieButton = styled(Button)({
   backgroundColor: 'rgba(255,255,255,0.5)',
@@ -33,14 +34,18 @@ function MovieDeatils() {
   const navigate = useNavigate();
   const [movieData, setmovieData] = useState([]);
   const [review, setReview] = useState(false);
-  const { state } = useContext(Store);
+  const { state, dispatch } = useContext(Store);
   const { movies } = state;
-  const { movieItem } = movies;
+  const { movieItem, favMovie } = movies;
   const movieInfo = movieItem;
+  const [favData, setFavData] = useState({});
+
+  console.log('fav movie intial', favData);
+
   function randomIntFromInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
-  const pageNo = randomIntFromInterval(1, 700);
+  const pageNo = randomIntFromInterval(1, 100);
 
   useEffect(() => {
     axios
@@ -49,8 +54,8 @@ function MovieDeatils() {
       )
       .then(function (response) {
         // handle success
-        console.log(response.data);
         const data = response.data.results;
+        // console.log('data', data);
         setmovieData(data);
       })
       .catch(function (error) {
@@ -62,6 +67,16 @@ function MovieDeatils() {
       });
   }, []);
 
+  const addToFav = () => {
+    dispatch({ type: 'ADD_TO_FAV', payload: { ...favData } });
+    if (!review) {
+      setReview(true);
+    } else {
+      setReview(false);
+    }
+
+    console.log('fav movie after dispath', favData);
+  };
   return (
     <Stack
       sx={{
@@ -82,7 +97,7 @@ function MovieDeatils() {
         // height: '100vh',
       }}
     >
-      <span onClick={() => navigate("/")}>
+      <span onClick={() => navigate('/')}>
         <Box
           sx={{
             paddingBottom: {
@@ -182,11 +197,16 @@ function MovieDeatils() {
                 <MovieButton startIcon={<AddCircleIcon />}>
                   Add To My List
                 </MovieButton>
-                <MovieButton startIcon={<StarBorderIcon />}>
-                  Rate Serie
-                </MovieButton>
+                <span
+                  style={{
+                    cursor: 'pointer',
+                  }}
+                  onClick={addToFav}
+                >
+                  <ButtIcon icon={StarBorderIcon} value={review} />
+                </span>
               </Stack>
-              <Stack
+              {/* <Stack
                 className="button--right"
                 spacing={1}
                 sx={{
@@ -225,7 +245,7 @@ function MovieDeatils() {
                 >
                   <ButtIcon icon={StarBorderIcon} value={review} />
                 </span>
-              </Stack>
+              </Stack> */}
             </Stack>
           </Box>
         </Stack>
@@ -258,9 +278,13 @@ function MovieDeatils() {
           style={{ display: 'flex', flexWrap: 'wrap', gap: '2em' }}
         >
           {/* related movie render here */}
-          {movieData.slice(3, 19).map((e, key) => (
-            <MoviePoster data={e} key={key} />
-          ))}
+          {movieData.length === 0 ? (
+            <PreRender />
+          ) : (
+            movieData
+              .slice(3, 19)
+              .map((e, key) => <MoviePoster data={e} key={key} />)
+          )}
         </Stack>
       </Box>
     </Stack>

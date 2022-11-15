@@ -1,20 +1,17 @@
 import { Box } from '@mui/material';
 import React, { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Store } from '../store/Store';
 
 function MoviePoster({ data }) {
   const navigate = useNavigate();
-  const { state, dispatch } = useContext(Store);
-  // const { movies } = state;
-  // const { movieItem } = movies;
-  // const movieImfo = movieItem;
+  const { dispatch } = useContext(Store);
 
   const shownMovieDeatils = (item) => {
-    navigate('moviedetails');
+    navigate('../../moviedetails/'+item.id);
     dispatch({ type: 'SHOW_MOVIE_PREVIEW', payload: { ...item } });
-    console.log('shownMovieDeatils', item);
   };
+
   return (
     <Box className="moviesItem--container">
       <img
