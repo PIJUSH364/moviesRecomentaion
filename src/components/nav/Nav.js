@@ -94,7 +94,7 @@ function Nav() {
           <NavLink to="/">
             <MenuItems>Home</MenuItems>
           </NavLink>
-          <NavLink to="/">
+          <NavLink to="movies">
             <MenuItems>Movies</MenuItems>
           </NavLink>{' '}
           <NavLink to="shows">

@@ -41,7 +41,7 @@ function MovieDeatils() {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
   const pageNo = randomIntFromInterval(1, 700);
-  console.log(pageNo);
+
   useEffect(() => {
     axios
       .get(

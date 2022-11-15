@@ -39,9 +39,6 @@ function Layout({ Children }) {
             paddingLeft: { xs: '1rem', lg: '3rem' },
           }}
         >
-          <Link to="moviedetails">
-            <Button>demo</Button>
-          </Link>
           <Typography mt={1} variant="h4" color="#fff">
             Top Rated
           </Typography>{' '}

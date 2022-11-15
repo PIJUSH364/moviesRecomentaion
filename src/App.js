@@ -32,9 +32,10 @@ function App() {
         <Route path="moviedetails" element={<MovieDeatils />}>
           <Route path=":movieItem" element={<MovieDeatils />} />
         </Route>
-        {/* <Route path="movies" element={<AllMovies />}>
-          <Route path="moviedetails" element={<MovieDeatils />} />
+        <Route path="movies" element={<AllMovies />}>
+          <Route path=":movieItem" element={<MovieDeatils />} />
         </Route>
+        {/*
         <Route path="/moviedetails" element={<MovieDeatils />} /> */}
         <Route path="*" element={<NotFound />} />
       </Routes>

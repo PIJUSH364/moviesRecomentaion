@@ -12,10 +12,14 @@ const MoviePoster = lazy(() => import('../category/MoviePoster'));
 
 function TopRatedSlider() {
   const [movieData, setmovieData] = useState([]);
+  function randomIntFromInterval(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+  const pageNo = randomIntFromInterval(1, 700);
   useEffect(() => {
     axios
       .get(
-        'https://api.themoviedb.org/3/movie/popular?api_key=b6d57f45c1ed674f27d2d36fd0ed479c&language=en-US&page=1'
+        `https://api.themoviedb.org/3/movie/popular?api_key=b6d57f45c1ed674f27d2d36fd0ed479c&language=en-US&page=${pageNo}`
       )
       .then(function (response) {
         // handle success

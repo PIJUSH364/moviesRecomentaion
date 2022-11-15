@@ -65,13 +65,13 @@ function ResponsiveMenu({ setAuthRenderValue }) {
         <NavLink to="movies">
           <MenuItems startIcon={<MovieIcon />}>Movies</MenuItems>
         </NavLink>{' '}
-        <NavLink to="movies">
+        <NavLink to="shows">
           <MenuItems startIcon={<GroupWorkIcon />}>Shows</MenuItems>
         </NavLink>{' '}
-        <NavLink to="movies">
+        <NavLink to="live tv">
           <MenuItems startIcon={<LiveTvIcon />}>livie Tv</MenuItems>
         </NavLink>{' '}
-        <NavLink to="movies">
+        <NavLink to="my list">
           <MenuItems startIcon={<ShoppingCartIcon />}>My List</MenuItems>
         </NavLink>
       </Stack>
