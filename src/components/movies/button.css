@@ -25,3 +25,6 @@
   padding: 0.5em 0.6em;
   border-radius: 6px;
 }
+mn{
+  object-fit: cover;
+}

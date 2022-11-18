@@ -1,11 +1,11 @@
-import { Box, IconButton } from '@mui/material';
+import { Box, Button, IconButton, Tooltip } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Nav from '../nav/Nav';
 import MovieSummay from './MovieSummay';
 import Sorting from './Sorting';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import rndInt from '../randomNumber';
 
 function AllMovies() {
   const navigate = useNavigate();
@@ -20,13 +20,8 @@ function AllMovies() {
         // handle success
         const data = response.data.results;
         setmovieData(data);
-        {
-          function randomNumGenerator(min, max) {
-            return Math.floor(Math.random() * (max - min + 1) + min);
-          }
-          const rndInt = randomNumGenerator(1, 16);
-          setMovieItem(data[rndInt]);
-        }
+
+        setMovieItem(data[rndInt]);
       })
       .catch(function (error) {
         // handle error
@@ -69,13 +64,13 @@ function AllMovies() {
             },
           }}
         >
-          <IconButton aria-label="delete" size="large" color="primary">
-            <ArrowBackIosIcon fontSize="inherit" />
-          </IconButton>
-          Home
+          <Tooltip title="Home" placement="right" arrow>
+            <IconButton aria-label="delete" size="large" color="primary">
+              <ArrowBackIosIcon fontSize="inherit" color="inherit" />
+            </IconButton>
+          </Tooltip>
         </Box>
       </span>
-      {/* <Nav homeLink="/" movieLink="#" /> */}
       <MovieSummay data={movieItem} />
       <Sorting data={movieData} />
     </Box>

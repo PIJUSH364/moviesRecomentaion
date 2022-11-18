@@ -1,28 +1,27 @@
 import React, { lazy, Suspense, useEffect, useState } from 'react';
 import axios from 'axios';
-import { Box } from '@mui/material';
+import { Box, Skeleton, Stack } from '@mui/material';
 import PreRender from '../movies/PreRender';
 import pageNo from './randomPageNo';
 const MoviePoster = lazy(() => import('../category/MoviePoster'));
 
-function TopRatedSlider() {
-  const [movieData, setmovieData] = useState([]);
+function Tranding() {
+  const [trandingData, setTrandingData] = useState([]);
   useEffect(() => {
     axios
       .get(
-        `https://api.themoviedb.org/3/movie/popular?api_key=b6d57f45c1ed674f27d2d36fd0ed479c&language=en-US&page=${pageNo}`
+        `https://api.themoviedb.org/3/trending/all/day?api_key=b6d57f45c1ed674f27d2d36fd0ed479c`
       )
       .then(function (response) {
         // handle success
         const data = response.data.results;
-        setmovieData(data);
+        setTrandingData(data);
       })
       .catch(function (error) {
         // handle error
         console.log('error on data fetching toprated slider', error);
       });
   }, []);
-
   return (
     <Box
       sx={{
@@ -35,10 +34,10 @@ function TopRatedSlider() {
         justifyItems: 'center',
       }}
     >
-      {movieData.length === 0 ? (
+      {trandingData.length === 0 ? (
         <PreRender />
       ) : (
-        movieData.slice(0, 14).map((item, key) => {
+        trandingData.slice(0, 14).map((item, key) => {
           return (
             <Suspense key={key} fallback={<span>Loading...</span>}>
               <MoviePoster data={item} />
@@ -50,4 +49,4 @@ function TopRatedSlider() {
   );
 }
 
-export default TopRatedSlider;
+export default Tranding;

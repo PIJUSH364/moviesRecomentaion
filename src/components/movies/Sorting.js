@@ -1,6 +1,6 @@
 import { Stack, Button, Box, Typography, Avatar } from '@mui/material';
-import React, { useState, useEffect } from 'react';
-import data from '../store/data';
+import React, { useState, useEffect, Suspense } from 'react';
+const MoviePoster = React.lazy(() => import('../category/MoviePoster'));
 import styled from '@emotion/styled';
 import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
 import StarHalfIcon from '@mui/icons-material/StarHalf';
@@ -8,7 +8,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import TextFieldsIcon from '@mui/icons-material/TextFields';
 import SelectButton from './SelectButton';
-import MoviePoster from '../category/MoviePoster';
+import SelectDropDownButton from './SelectDropDownButton';
 
 const MovieButton = styled(Button)({
   backgroundColor: 'rgba(255,255,255,0.5)',
@@ -65,18 +65,6 @@ function Sorting() {
     }
   };
   console.log(pageNo);
-  // const handleSort = () => {
-  //   console.log('handle sort');
-  //   const popularity = moviesData.sort(function (a, b) {
-  //     return b.vote_count - a.vote_count;
-  //   });
-  //   console.log(popularity);
-  //   setFiltered(popularity);
-  // };
-
-  // const ratinng = data.sort(function (a, b) {
-  //   return b.vote_average - a.vote_average;
-  // });
   return (
     <Stack direction="column" mt={2}>
       <Stack
@@ -99,6 +87,7 @@ function Sorting() {
           </MovieButton>
           <MovieButton onClick={() => setActiveGenre(28)}>action</MovieButton>
         </Stack>
+        {/* <SelectDropDownButton /> */}
         {/* <Stack
           sx={{
             flexDirection: {
@@ -133,10 +122,9 @@ function Sorting() {
       >
         {filtered.map((e, key) => {
           return (
-            <>
-             
+            <Suspense fallback={<span>Loading...</span>}>
               <MoviePoster key={key} data={e} />
-            </>
+            </Suspense>
           );
         })}
       </Box>

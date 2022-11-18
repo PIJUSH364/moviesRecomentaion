@@ -14,12 +14,26 @@ import axios from 'axios';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useNavigate } from 'react-router-dom';
 import PreRender from './PreRender';
-
+import pageNo from '../homeSlider/randomPageNo';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 const MovieButton = styled(Button)({
   backgroundColor: 'rgba(255,255,255,0.5)',
   color: '#fff',
-  fontSize: '15px',
-  padding: '10px 18px',
+  fontSize: {
+    xs: '0.51rem',
+    sm: '1rem',
+    md: '1rem',
+    lg: '1rem',
+    xl: '1rem',
+  },
+  padding: {
+    xs: '3rem',
+    sm: '3rem',
+    md: '1rem',
+    lg: '1rem',
+    xl: '1rem',
+  },
+
   transition: 'all 1s ease-in-out',
   fontWeight: '600',
   fontFamily: 'monospace',
@@ -39,13 +53,6 @@ function MovieDeatils() {
   const { movieItem, favMovie } = movies;
   const movieInfo = movieItem;
   const [favData, setFavData] = useState({});
-
-  console.log('fav movie intial', favData);
-
-  function randomIntFromInterval(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-  }
-  const pageNo = randomIntFromInterval(1, 100);
 
   useEffect(() => {
     axios
@@ -74,8 +81,6 @@ function MovieDeatils() {
     } else {
       setReview(false);
     }
-
-    console.log('fav movie after dispath', favData);
   };
   return (
     <Stack
@@ -180,72 +185,21 @@ function MovieDeatils() {
             >
               <Stack
                 className="button--left"
+                direction="row"
                 sx={{
-                  flexDirection: {
-                    xs: 'column',
-                    sm: 'row',
-                    md: 'row',
-                    lg: 'row',
-                    xl: 'row',
-                  },
                   gap: '1rem',
                 }}
               >
                 <MovieButton startIcon={<PlayArrowIcon />}>
                   Watch Trailer
                 </MovieButton>
-                <MovieButton startIcon={<AddCircleIcon />}>
+                <MovieButton
+                  onClick={addToFav}
+                  startIcon={review ? <CheckCircleIcon /> : <AddCircleIcon />}
+                >
                   Add To My List
                 </MovieButton>
-                <span
-                  style={{
-                    cursor: 'pointer',
-                  }}
-                  onClick={addToFav}
-                >
-                  <ButtIcon icon={StarBorderIcon} value={review} />
-                </span>
               </Stack>
-              {/* <Stack
-                className="button--right"
-                spacing={1}
-                sx={{
-                  justifyContent: {
-                    xs: 'space-between',
-                    sm: 'space-between',
-                    md: 'space-between',
-                    lg: 'flex-end',
-                    xl: 'flex-end',
-                  },
-                  flexDirection: {
-                    xs: 'column',
-                    sm: 'row',
-                    md: 'row',
-                    lg: 'row',
-                    xl: 'row',
-                  },
-                  gap: '10px',
-                  alignItems: 'center',
-                  alignContent: 'center',
-                }}
-              >
-                <span
-                  style={{
-                    cursor: 'pointer',
-                  }}
-                  onClick={() => alert(`Sorry we can't store Your data`)}
-                >
-                  <ButtIcon icon={QuestionAnswerIcon} />
-                </span>
-                <span
-                  style={{
-                    cursor: 'pointer',
-                  }}
-                  onClick={() => setReview(!review)}
-                >
-                  <ButtIcon icon={StarBorderIcon} value={review} />
-                </span>
-              </Stack> */}
             </Stack>
           </Box>
         </Stack>
@@ -275,6 +229,7 @@ function MovieDeatils() {
         <Stack
           className="movies--list"
           direction="row"
+          justifyContent="space-evenly"
           style={{ display: 'flex', flexWrap: 'wrap', gap: '2em' }}
         >
           {/* related movie render here */}
@@ -283,7 +238,9 @@ function MovieDeatils() {
           ) : (
             movieData
               .slice(3, 19)
-              .map((e, key) => <MoviePoster data={e} key={key} />)
+              .map((e, key) => (
+                <MoviePoster data={e} key={key} setReview={setReview} />
+              ))
           )}
         </Stack>
       </Box>

@@ -3,13 +3,14 @@ import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Store } from '../store/Store';
 
-function MoviePoster({ data }) {
+function MoviePoster({ data, setReview }) {
   const navigate = useNavigate();
   const { dispatch } = useContext(Store);
 
   const shownMovieDeatils = (item) => {
-    navigate('../../moviedetails/'+item.id);
+    navigate('../../moviedetails/' + item.id);
     dispatch({ type: 'SHOW_MOVIE_PREVIEW', payload: { ...item } });
+    setReview(false);
   };
 
   return (

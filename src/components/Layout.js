@@ -3,6 +3,7 @@ import SwiperHome from './homeSlider/SwiperHome';
 import { Typography, Box } from '@mui/material';
 import TopRatedSlider from './homeSlider/TopRatedSlider';
 import Nav from './nav/Nav';
+import Tranding from './homeSlider/Tranding';
 
 function Layout({ Children }) {
   return (
@@ -41,6 +42,10 @@ function Layout({ Children }) {
             Top Rated
           </Typography>
           <TopRatedSlider />
+          <Typography mt={3} variant="h4" color="#fff">
+            Tranding
+          </Typography>
+          <Tranding />
         </Box>
       </Box>
     </Box>
