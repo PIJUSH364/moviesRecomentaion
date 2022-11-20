@@ -45,9 +45,7 @@ function Slider(props) {
             color: '#fff',
           }}
         >
-          <Typography variant="h3" pb={2}>
-            All Quiet on the Western Front
-          </Typography>
+          <h1>All Quiet on the Western Front</h1>
 
           <div className="slider--rating">
             <div className="slider--imdb--rating">
@@ -64,16 +62,20 @@ function Slider(props) {
               </span>
             </div>
             <div className="slider--content--deatils">
-              <p className="ratingTen">
+              <p
+                className="ratingTen"
+                style={{
+                  marginTop: '0.31rem',
+                }}
+              >
                 2015&nbsp;&#x2022; &nbsp;+10&nbsp;&#x2022;&nbsp;1hr
                 38min&nbsp;&#x2022;&nbsp;&nbsp;Fantasy&#x2022;&nbsp;Horror
               </p>
             </div>
-            <Typography
-              variant="body1"
-              className="slider-text"
-              sx={{
-                textAlign: 'justify',
+            <p
+              className="summery_text"
+              style={{
+                margin: '0.71rem 0 ',
               }}
             >
               Paul Baumer and his friends Albert and Muller, egged on by
@@ -82,7 +84,7 @@ function Slider(props) {
               enthusiastically march into a war they believe in. But once on the
               Western Front, they discover the soul-destroying horror of World
               War I.
-            </Typography>
+            </p>
           </div>
         </Stack>
         <Stack

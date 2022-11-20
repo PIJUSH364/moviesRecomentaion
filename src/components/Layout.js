@@ -36,15 +36,12 @@ function Layout({ Children }) {
         <Box
           sx={{
             paddingLeft: { xs: '1rem', lg: '3rem' },
+            color: '#fff',
           }}
         >
-          <Typography mt={1} variant="h4" color="#fff">
-            Top Rated
-          </Typography>
+          <h1>Top Rated</h1>
           <TopRatedSlider />
-          <Typography mt={3} variant="h4" color="#fff">
-            Tranding
-          </Typography>
+          <h1> Tranding</h1>
           <Tranding />
         </Box>
       </Box>

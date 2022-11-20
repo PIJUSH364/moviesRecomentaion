@@ -87,28 +87,6 @@ function Sorting() {
           </MovieButton>
           <MovieButton onClick={() => setActiveGenre(28)}>action</MovieButton>
         </Stack>
-        {/* <SelectDropDownButton /> */}
-        {/* <Stack
-          sx={{
-            flexDirection: {
-              xs: 'column',
-              sm: 'column',
-              md: 'row',
-              lg: 'row',
-              xl: 'row',
-            },
-            gap: '5px',
-          }}
-        >
-          <MovieButton startIcon={<QueryBuilderIcon />}>newest</MovieButton>
-          <MovieButton startIcon={<StarHalfIcon />} onClick={handleSort}>
-            Rating
-          </MovieButton>
-          <MovieButton startIcon={<VisibilityIcon />}>Views</MovieButton>
-          <MovieButton startIcon={<TextFieldsIcon />}>title</MovieButton>
-
-          <MovieButton startIcon={<DateRangeIcon />}>Year</MovieButton>
-        </Stack> */}
       </Stack>
       <Box
         sx={{

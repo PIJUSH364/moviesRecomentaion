@@ -47,6 +47,7 @@ function AllMovies() {
         backgroundSize: 'cover',
         backgroundAttachment: 'fixed',
         minHeight: '100vh',
+        backgroundPosition: 'center',
       }}
       bgcolor="gray"
     >

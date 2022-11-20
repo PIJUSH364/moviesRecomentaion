@@ -2,7 +2,22 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
+}
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.3rem;
+}
+h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+.summery_text {
+  color: hsla(0, 0%, 100%, 0.8);
+}
+.ratingTen {
+  color: hsla(0, 0%, 100%, 0.9);
 }
 
 code {

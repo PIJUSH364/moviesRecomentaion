@@ -75,9 +75,7 @@ function MovieSummay({ data }) {
         color: '#fff',
       }}
     >
-      <Typography variant="h3" mt={2}>
-        {data.title}
-      </Typography>{' '}
+      <h1>{data.title}</h1>
       <Box className="slider--rating">
         <Box className="slider--imdb--rating">
           <span>
@@ -99,18 +97,16 @@ function MovieSummay({ data }) {
           </span>
         </Box>
         <Box className="slider--content--deatils">
-          <Typography variant="body1" className="ratingTen">
+          <h4 className="ratingTen">
             {`${data.release_date?.split('-', 1)}`}&nbsp;&#x2022;
             &nbsp;+10&nbsp;&#x2022;&nbsp;1hr 38min&nbsp;
             {catagory?.slice(0, 2).map((e, key) => {
               return <span key={key}>&#x2022;&nbsp;{e}&nbsp;</span>;
             })}
-          </Typography>
+          </h4>
         </Box>
-        <Box style={{ minHeight: '6rem' }} pt={2}>
-          <Typography variant="body1" textAlign="justify">
-            {data.overview}
-          </Typography>
+        <Box style={{ minHeight: '6rem' }} pt={2} textAlign="justify">
+          <p className='summery_text'>{data.overview}</p>
         </Box>
       </Box>
     </Stack>

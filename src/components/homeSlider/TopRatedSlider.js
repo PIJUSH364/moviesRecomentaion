@@ -25,6 +25,7 @@ function TopRatedSlider() {
 
   return (
     <Box
+      mb={3}
       sx={{
         maxWidth: '90vw',
         display: 'grid',

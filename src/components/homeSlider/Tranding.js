@@ -24,6 +24,7 @@ function Tranding() {
   }, []);
   return (
     <Box
+      pb={5}
       sx={{
         maxWidth: '90vw',
         display: 'grid',
